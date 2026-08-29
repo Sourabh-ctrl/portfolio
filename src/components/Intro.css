@@ -1,0 +1,78 @@
+.intro {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ascii-portrait {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.ascii-text {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: clamp(0.5rem, 1.1vw, 0.85rem);
+  line-height: 0.72;
+  letter-spacing: -0.4px;
+  color: var(--light-navy);
+  user-select: none;
+  text-align: center;
+  white-space: pre;
+}
+
+.intro-overlay {
+  position: relative;
+  z-index: 1;
+  max-width: 70rem;
+  padding: 0 1.25rem;
+  text-align: center;
+}
+
+.intro-greeting {
+  color: var(--green);
+  font-size: clamp(1rem, 2.4vw, 1.4rem);
+  margin: 0 0 0.5rem;
+}
+
+.intro-name {
+  font-weight: 700;
+  font-size: clamp(2.2rem, 7.5vw, 5.5rem) !important;
+  margin: 0 !important;
+  color: var(--white) !important;
+  text-shadow: 0 2px 30px rgba(10, 25, 47, 0.9);
+}
+
+.intro-role {
+  font-weight: 400;
+  font-size: clamp(1.5rem, 5vw, 3.4rem) !important;
+  margin: 0.25rem 0 1rem !important;
+  color: var(--slate) !important;
+  text-shadow: 0 2px 24px rgba(10, 25, 47, 0.95);
+}
+
+.intro-tagline {
+  font-size: clamp(1rem, 2.6vw, 1.5rem);
+  color: var(--light-slate);
+  min-height: 2.2rem;
+  text-shadow: 0 2px 18px rgba(10, 25, 47, 0.95);
+}
+
+.intro-tagline::after {
+  content: '|';
+  color: var(--green);
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

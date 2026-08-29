@@ -1,0 +1,79 @@
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-left: 1.75rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--lightest-navy) 5%,
+    var(--lightest-navy) 95%,
+    transparent
+  );
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -1.72rem;
+  top: 0.5rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background-color: var(--navy);
+  border: 2px solid var(--green);
+}
+
+.timeline-role {
+  color: var(--white);
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.timeline-at {
+  color: var(--green);
+  font-family: 'NTR', sans-serif;
+  font-weight: 400;
+}
+
+.timeline-org {
+  color: var(--green);
+  font-family: 'NTR', sans-serif;
+  font-weight: 400;
+}
+
+.timeline-period {
+  color: var(--slate);
+  font-size: 0.95rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.timeline-summary {
+  color: var(--light-slate);
+  margin: 0 0 0.5rem;
+}
+
+.timeline-highlights {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--slate);
+  display: grid;
+  gap: 0.4rem;
+}
+
+.timeline-highlights li::marker {
+  color: var(--green);
+}

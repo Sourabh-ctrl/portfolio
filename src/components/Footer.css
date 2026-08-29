@@ -1,0 +1,33 @@
+.footer {
+  text-align: center;
+  padding: 6rem 1.25rem 3rem;
+  background-color: var(--navy);
+  border-top: 1px solid rgba(35, 53, 84, 0.5);
+}
+
+.footer-title {
+  color: var(--white);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  margin: 0 0 1rem;
+}
+
+.footer-copy {
+  color: var(--slate);
+  max-width: 34rem;
+  margin: 0 auto 1.5rem;
+}
+
+.footer-meta {
+  font-size: 0.9rem;
+  color: var(--slate);
+  border-top: 1px solid rgba(35, 53, 84, 0.4);
+  padding-top: 1.75rem;
+}
+
+.footer-meta a {
+  color: var(--slate);
+}
+
+.footer-meta a:hover {
+  color: var(--green);
+}
