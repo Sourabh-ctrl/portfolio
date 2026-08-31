@@ -16,7 +16,7 @@ function FadeInSection({ children, className = '' }) {
           }
         })
       },
-      { threshold: 0.15 },
+      { threshold: 0.05, rootMargin: '50px' },
     )
     observer.observe(node)
     return () => observer.disconnect()
@@ -25,7 +25,9 @@ function FadeInSection({ children, className = '' }) {
   return (
     <div
       ref={ref}
-      className={`scroll-fade ${visible ? 'visible' : ''} ${className}`.trim()}
+      className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+      } ${className}`.trim()}
     >
       {children}
     </div>

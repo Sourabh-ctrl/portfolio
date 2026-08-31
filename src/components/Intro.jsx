@@ -1,100 +1,50 @@
-import { useEffect, useState } from 'react'
-import { Typography } from '@mui/material'
 import { TypeAnimation } from 'react-type-animation'
 import data from '../data.js'
-import './Intro.css'
+import CyberSphere from './CyberSphere.jsx'
 
-function AsciiPortrait() {
-  const [charGrid, setCharGrid] = useState('')
-
-  // Tuning constants — tweak these to get a good render once your own
-  // portrait is in place. Character set orders darkest -> brightest.
-  const CHAR_SET = '@%#*+=-:. '
-  const COLUMNS = 100
-  const CONTRAST = 1.6
-
-  useEffect(() => {
-    let cancelled = false
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-    img.src = data.hero.portrait
-
-    const render = () => {
-      const ratio = img.height / img.width
-      const rows = Math.round(COLUMNS * ratio * 0.5)
-      const canvas = document.createElement('canvas')
-      canvas.width = COLUMNS
-      canvas.height = rows
-      const ctx = canvas.getContext('2d', { willReadFrequently: true })
-      if (!ctx) return
-      ctx.drawImage(img, 0, 0, COLUMNS, rows)
-      const { data: px } = ctx.getImageData(0, 0, COLUMNS, rows)
-
-      const glyphs = [...CHAR_SET]
-      const maxIndex = glyphs.length - 1
-      const lines = []
-      for (let y = 0; y < rows; y += 1) {
-        let line = ''
-        for (let x = 0; x < COLUMNS; x += 1) {
-          const i = (y * COLUMNS + x) * 4
-          let lum = 0.2126 * px[i] + 0.7152 * px[i + 1] + 0.0722 * px[i + 2]
-          lum -= 128 * (CONTRAST - 1)
-          lum = Math.max(0, Math.min(255, lum))
-          const idx = Math.floor((lum / 255) * maxIndex)
-          line += glyphs[Math.min(maxIndex, Math.max(0, idx))]
-        }
-        lines.push(line)
-      }
-      if (!cancelled) {
-        setCharGrid(lines.join('\n'))
-      }
-    }
-
-    if (img.complete) render()
-    else img.onload = render
-    img.onerror = () => {
-      if (cancelled) return
-      const rows = 28
-      const glyph = '.'
-      const lines = []
-      for (let y = 0; y < rows; y += 1) {
-        lines.push(glyph.repeat(COLUMNS))
-      }
-      setCharGrid(lines.join('\n'))
-    }
-    return () => {
-      cancelled = true
-    }
-  }, [CHAR_SET, COLUMNS, CONTRAST])
-
+function EmailIcon({ className = 'w-5 h-5' }) {
   return (
-    <div className="ascii-portrait" aria-hidden="true">
-      <pre className="ascii-text">{charGrid}</pre>
-    </div>
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+    </svg>
   )
 }
 
 function Intro() {
   const { identity, hero } = data
   return (
-    <section className="intro" id="intro">
-      <AsciiPortrait />
-      <div className="intro-overlay">
-        <p className="intro-greeting">{hero.greeting}</p>
-        <Typography variant="h1" className="intro-name">
-          {identity.name}
-        </Typography>
-        <Typography variant="h2" className="intro-role">
-          {identity.role}
-        </Typography>
-        <div className="intro-tagline">
-          <TypeAnimation
-            sequence={[...hero.taglines.flatMap((line) => [line, 2000])].slice(0, -1)}
-            wrapper="span"
-            speed={45}
-            repeat={Infinity}
-          />
-        </div>
+    <section
+      id="intro"
+      className="relative w-full min-h-[80vh] flex flex-col items-center justify-center gap-10 px-5 md:px-[5vw] pt-16 pb-16 md:pt-24 md:pb-24 md:flex-row md:gap-[4vw]"
+    >
+      <div className="flex items-center justify-center shrink-0">
+        <CyberSphere />
+      </div>
+      <div className="flex flex-col items-center text-center md:items-start md:text-left max-w-[34rem]">
+        <h1 className="intro-title font-sans font-bold text-[clamp(2.6rem,6vw,5rem)] leading-none text-lightest-slate m-0 mb-2">
+          {'hi, '}
+          <span className="intro-name text-green font-bold">
+            <TypeAnimation
+              sequence={[identity.firstName]}
+              wrapper="span"
+              cursor={false}
+              speed={45}
+              repeat={0}
+            />
+          </span>
+          {' here.'}
+          <span className="intro-cursor text-green inline-block ml-1 animate-blink">|</span>
+        </h1>
+        <p className="intro-desc text-slate font-sans text-lg md:text-xl mt-4 mb-8 max-w-full leading-relaxed">
+          {hero.description}
+        </p>
+        <a
+          href={`mailto:${identity.email}`}
+          className="intro-contact inline-flex items-center gap-2 text-green text-base font-bold font-sans px-8 py-3 border border-green rounded transition-all duration-300 hover:bg-green/10 hover:-translate-y-0.5"
+        >
+          <EmailIcon className="w-5 h-5" />
+          Say hi!
+        </a>
       </div>
     </section>
   )

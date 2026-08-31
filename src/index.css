@@ -1,3 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0a192f;
+  --color-light-navy: #112240;
+  --color-lightest-navy: #233554;
+  --color-slate: #8892b0;
+  --color-light-slate: #a8b2d1;
+  --color-lightest-slate: #ccd6f6;
+  --color-white: #e6f1ff;
+  --color-green: #64ffda;
+
+  --font-serif: "Source Serif Pro", Georgia, serif;
+  --font-sans: "NTR", "Segoe UI", sans-serif;
+  --font-mono: "Courier New", monospace;
+
+  --animate-blink: blink 1s step-start infinite;
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
 :root {
   --navy: #0a192f;
   --light-navy: #112240;
@@ -55,52 +80,17 @@ a:hover {
   outline-offset: 2px;
 }
 
-.section {
-  padding: 6rem 1.25rem;
-  max-width: 70rem;
-  margin: 0 auto;
+/* Polished custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
-
-.section-heading {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: var(--white);
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  margin: 0 0 2.5rem;
-  white-space: nowrap;
-  overflow: hidden;
+::-webkit-scrollbar-track {
+  background: var(--navy);
 }
-
-.section-heading::after {
-  content: '';
-  display: block;
-  height: 1px;
-  width: 100%;
-  background-color: var(--lightest-navy);
+::-webkit-scrollbar-thumb {
+  background: var(--lightest-navy);
+  border-radius: 4px;
 }
-
-.section-number {
-  color: var(--green);
-  font-family: 'NTR', sans-serif;
-  margin-right: 0.75rem;
-}
-
-.scroll-fade {
-  opacity: 0;
-  transform: translateY(1.25rem);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
-}
-
-.scroll-fade.visible {
-  opacity: 1;
-  transform: none;
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding: 4rem 1.25rem;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--slate);
 }

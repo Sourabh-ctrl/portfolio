@@ -31,7 +31,11 @@ Quality gates (no test suite — deliberate): `npm run lint` and `npm run build`
 
 ### Portrait (the ASCII hero)
 
-Your photo must be placed at `public/assets/portrait.png` (or update `data.hero.portrait` in `src/data.js`). A high-contrast, head-and-shoulders portrait works best — ASCII conversion is lossy. Tune the conversion in `src/components/Intro.jsx` (constants `CHAR_SET`, `COLUMNS`, `CONTRAST`).
+The portrait is read from `src/assets/portrait.png` (imported by `src/components/AsciiPortrait.jsx`). A high-contrast, head-and-shoulders photo works best — ASCII conversion is lossy.
+
+The current file was generated from the raw ChatGPT image at the repo root: cropped around the face, resized to 480×640, and contrast-enhanced with CLAHE. To regenerate with different framing, crop the raw image around the face and apply CLAHE (e.g. OpenCV) before saving.
+
+To swap in another photo: place it at `src/assets/portrait.png`, then tune the face-feature anchors (`FACE` in `src/components/AsciiPortrait.jsx`) until the animated eyes/mouth sit on the photo's real features. Conversion constants (`CHAR_SET`, particle size/gaps) live in the same file.
 
 ### Projects
 
