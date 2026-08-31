@@ -76,6 +76,3 @@ To publish:
 3. In the repo on GitHub: **Settings → Pages → Source: GitHub Actions**.
 4. The `deploy.yml` workflow builds and publishes `dist/` to Pages automatically on every push to `main`. You can also trigger it manually from the **Actions** tab.
 
-## Credits
-
-Visual design inspired by [gazijarin.com](https://github.com/gazijarin/Gazi-V2). Gazi-V2 ships no LICENSE, so this project is an original implementation, not a fork.
