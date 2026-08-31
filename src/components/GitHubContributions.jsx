@@ -1,15 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import data from '../data.js'
 import FadeInSection from './FadeInSection.jsx'
-import WakaTime from './WakaTime.jsx'
 
-// GitHub dark mode level colors
+// Exact official GitHub dark theme contribution level colors
 const LEVEL_COLORS = {
-  0: '#161b22',
-  1: '#0e4429',
-  2: '#006d32',
-  3: '#26a641',
-  4: '#39d353',
+  0: '#161b22', // GitHub empty square
+  1: '#0e4429', // GitHub level 1 green
+  2: '#006d32', // GitHub level 2 green
+  3: '#26a641', // GitHub level 3 green
+  4: '#39d353', // GitHub level 4 green
 }
 
 const MONTH_NAMES = [
@@ -203,21 +202,26 @@ function GitHubContributions() {
 
   return (
     <section
-      className="max-w-[70rem] mx-auto px-5 py-12 md:py-16"
-      id="github"
+      className="pt-6 pb-10"
+      id="activity"
     >
       <FadeInSection>
-        {/* Section Heading */}
-        <h2 className="flex items-center gap-4 text-white text-[clamp(1.4rem,3vw,2rem)] mb-6 whitespace-nowrap font-serif after:content-[''] after:block after:h-px after:flex-1 after:bg-lightest-navy/60">
-          <span className="text-green font-sans mr-0.5">/</span>
-          <span>activity</span>
-        </h2>
+        {/* Section Heading matching visheshxdevs header style */}
+        <div className="mb-4">
+          <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-white flex items-center gap-2">
+            <span className="text-accent font-sans mr-0.5">/</span>
+            <span>GitHub Activity</span>
+          </h2>
+          <p className="text-sm font-sans text-slate mt-1">
+            <b className="font-semibold text-lightest-slate">{github.username}</b>'s coding journey over the past year
+          </p>
+        </div>
 
-        {/* GitHub Contribution Card styled exactly like GitHub Dark Theme */}
+        {/* GitHub Contribution Card in pure black */}
         <div
           ref={cardRef}
           style={GITHUB_FONT_STYLE}
-          className="relative bg-[#0d1117] border border-[#30363d] rounded-lg p-4 sm:p-6 shadow-2xl transition-all duration-300 hover:border-[#8b949e]/40 text-[#e6edf3]"
+          className="relative bg-[#0d1117] border border-neutral-800 rounded-xl p-4 sm:p-6 shadow-2xl backdrop-blur-md text-[#e6edf3]"
         >
           {/* Card Header Bar */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-[#21262d]">
@@ -230,7 +234,7 @@ function GitHubContributions() {
                   'Loading contributions...'
                 ) : (
                   <>
-                    <strong className="font-semibold text-white">
+                    <strong >
                       {totalCount ?? 0} contributions
                     </strong>{' '}
                     in the last year
@@ -240,7 +244,6 @@ function GitHubContributions() {
             </div>
 
             <div className="flex items-center gap-3 self-start sm:self-auto flex-wrap">
-              <WakaTime />
               <a
                 href={github.profileUrl}
                 target="_blank"
@@ -255,90 +258,107 @@ function GitHubContributions() {
             </div>
           </div>
 
-          {/* Calendar Heatmap Container with Horizontal Scroll support */}
-          <div className="relative overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#30363d] scrollbar-track-transparent">
+          {/* Calendar Heatmap: Responsive SVG that fits the exact 1 year without horizontal scroll */}
+          <div className="relative w-full">
             {loading && !weeks.length ? (
               <div className="flex flex-col gap-2 py-8 animate-pulse items-center justify-center">
-                <div className="h-4 w-48 bg-[#21262d] rounded"></div>
-                <div className="h-28 w-full max-w-[50rem] bg-[#161b22] rounded border border-[#30363d]"></div>
+                <div className="h-4 w-48 bg-lightest-navy/40 rounded"></div>
+                <div className="h-28 w-full max-w-[50rem] bg-light-navy rounded border border-lightest-navy/60"></div>
               </div>
             ) : (
-              <div className="inline-block min-w-max">
-                {/* Month labels row */}
-                <div className="flex text-[12px] font-normal text-[#7d8590] mb-2 h-4 relative pl-9 select-none">
+              <div className="w-full">
+                {/* SVG Heatmap: width="100%" with viewBox guarantees 53 weeks fit naturally */}
+                <svg
+                  viewBox={`0 0 ${32 + Math.max(weeks.length, 52) * 13 + 6} 118`}
+                  className="w-full h-auto overflow-visible select-none"
+                >
+                  {/* Month header labels */}
                   {monthHeaders.map((mh, idx) => (
-                    <span
+                    <text
                       key={idx}
-                      className="absolute leading-none"
-                      style={{ left: `${36 + mh.col * 17.5}px` }}
+                      x={32 + mh.col * 13}
+                      y={10}
+                      fill="#7d8590"
+                      fontSize="10"
+                      fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
                     >
                       {mh.label}
-                    </span>
+                    </text>
                   ))}
-                </div>
 
-                {/* Day Labels + Grid Columns */}
-                <div className="flex gap-[3.5px] items-start">
-                  {/* Day labels column: Mon, Wed, Fri */}
-                  <div className="flex flex-col gap-[3.5px] text-[12px] font-normal text-[#7d8590] pr-2 select-none w-8 text-right">
-                    <span className="h-[14px] leading-[14px]"></span>
-                    <span className="h-[14px] leading-[14px]">Mon</span>
-                    <span className="h-[14px] leading-[14px]"></span>
-                    <span className="h-[14px] leading-[14px]">Wed</span>
-                    <span className="h-[14px] leading-[14px]"></span>
-                    <span className="h-[14px] leading-[14px]">Fri</span>
-                    <span className="h-[14px] leading-[14px]"></span>
-                  </div>
+                  {/* Day labels column */}
+                  <text
+                    x={22}
+                    y={37}
+                    fill="#7d8590"
+                    fontSize="9"
+                    textAnchor="end"
+                    fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                  >
+                    Mon
+                  </text>
+                  <text
+                    x={22}
+                    y={63}
+                    fill="#7d8590"
+                    fontSize="9"
+                    textAnchor="end"
+                    fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                  >
+                    Wed
+                  </text>
+                  <text
+                    x={22}
+                    y={89}
+                    fill="#7d8590"
+                    fontSize="9"
+                    textAnchor="end"
+                    fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                  >
+                    Fri
+                  </text>
 
-                  {/* 53 Columns of 7 Day Cells */}
-                  <div className="flex gap-[3.5px]">
-                    {weeks.map((week, wIdx) => (
-                      <div key={wIdx} className="flex flex-col gap-[3.5px]">
+                  {/* Contribution Cells */}
+                  {weeks.map((week, wIdx) => {
+                    const colX = 32 + wIdx * 13
+                    return (
+                      <g key={wIdx}>
                         {week.map((day, dIdx) => {
-                          if (!day) {
-                            return (
-                              <div
-                                key={dIdx}
-                                className="w-[14px] h-[14px] bg-transparent"
-                                aria-hidden="true"
-                              />
-                            )
-                          }
-
+                          if (!day) return null
+                          const rowY = 18 + dIdx * 13
                           const level = day.level ?? (day.count > 0 ? 1 : 0)
                           const bgColor = LEVEL_COLORS[level] || LEVEL_COLORS[0]
 
                           return (
-                            <div
+                            <rect
                               key={dIdx}
+                              x={colX}
+                              y={rowY}
+                              width={10}
+                              height={10}
+                              rx={2}
+                              ry={2}
+                              fill={bgColor}
+                              stroke="rgba(255, 255, 255, 0.04)"
+                              strokeWidth={0.5}
+                              className="cursor-pointer transition-all duration-75 hover:stroke-white hover:stroke-1"
                               onMouseEnter={(e) => handleCellMouseEnter(e, day)}
                               onMouseLeave={handleCellMouseLeave}
                               onClick={(e) => handleCellMouseEnter(e, day)}
-                              className="w-[14px] h-[14px] rounded-[3px] cursor-pointer transition-colors duration-75 hover:outline hover:outline-[1.5px] hover:outline-white/80 hover:outline-offset-[-1px]"
-                              style={{
-                                backgroundColor: bgColor,
-                                outline: '1px solid rgba(255, 255, 255, 0.04)',
-                                outlineOffset: '-1px',
-                              }}
-                              data-date={day.date}
-                              data-count={day.count}
-                              data-level={level}
-                              aria-label={`${day.count} contributions on ${day.date}`}
                             />
                           )
                         })}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                      </g>
+                    )
+                  })}
+                </svg>
               </div>
             )}
           </div>
 
-          {/* Hover Tooltip Popup - rendered outside the overflow container so it never gets clipped or hidden */}
+          {/* Hover Tooltip Popup */}
           {tooltip && (
             <div
-              style={GITHUB_FONT_STYLE}
               className={`absolute z-50 pointer-events-none -translate-x-1/2 px-2.5 py-1.5 bg-[#161b22] text-[#f0f6fc] text-[12px] font-normal leading-snug rounded-md shadow-2xl border border-[#30363d] whitespace-nowrap transition-all duration-75 ${
                 tooltip.placeBelow ? 'translate-y-0' : '-translate-y-full'
               }`}
@@ -394,4 +414,3 @@ function GitHubContributions() {
 }
 
 export default GitHubContributions
-

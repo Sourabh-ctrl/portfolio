@@ -1,18 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0a192f;
-  --color-light-navy: #112240;
-  --color-lightest-navy: #233554;
-  --color-slate: #8892b0;
-  --color-light-slate: #a8b2d1;
-  --color-lightest-slate: #ccd6f6;
-  --color-white: #e6f1ff;
-  --color-green: #64ffda;
+  --color-navy: var(--color-bg-primary);
+  --color-light-navy: var(--color-bg-secondary);
+  --color-lightest-navy: var(--color-border);
+  --color-slate: var(--color-text-muted);
+  --color-light-slate: var(--color-text-secondary);
+  --color-lightest-slate: var(--color-text-primary);
+  --color-white: var(--color-text-heading);
+  --color-heading: var(--color-text-heading);
+  --color-green: var(--color-accent);
+  --color-accent: #64ffda;
+  --color-surface: var(--color-bg-surface);
+  --color-surface-hover: var(--color-bg-surface-hover);
 
   --font-serif: "Source Serif Pro", Georgia, serif;
   --font-sans: "NTR", "Segoe UI", sans-serif;
-  --font-mono: "Courier New", monospace;
+  --font-mono: "JetBrains Mono", monospace;
 
   --animate-blink: blink 1s step-start infinite;
 
@@ -23,35 +27,54 @@
   }
 }
 
-:root {
-  --navy: #0a192f;
-  --light-navy: #112240;
-  --lightest-navy: #233554;
-  --slate: #8892b0;
-  --light-slate: #a8b2d1;
-  --lightest-slate: #ccd6f6;
-  --white: #e6f1ff;
-  --green: #64ffda;
+/* ─── Dark theme (default) ─── */
+:root,
+.dark {
+  --color-bg-primary: #0a192f;
+  --color-bg-secondary: #112240;
+  --color-bg-surface: #112240;
+  --color-bg-surface-hover: #233554;
+  --color-border: #233554;
+  --color-text-heading: #e6f1ff;
+  --color-text-primary: #ccd6f6;
+  --color-text-secondary: #a8b2d1;
+  --color-text-muted: #8892b0;
+  --color-accent: #64ffda;
+  --color-accent-glow: rgba(100, 255, 218, 0.15);
+  --pattern-fg: rgba(100, 255, 218, 0.04);
+}
+
+/* ─── Light theme ─── */
+.light {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #ffffff;
+  --color-bg-surface: #f1f5f9;
+  --color-bg-surface-hover: #e2e8f0;
+  --color-border: #cbd5e1;
+  --color-text-heading: #000000;
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-text-muted: #000000;
+  --color-accent: #2563eb;
+  --color-accent-glow: rgba(37, 99, 235, 0.18);
+  --pattern-fg: rgba(37, 99, 235, 0.05);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 5rem;
 }
 
 body {
   margin: 0;
-  background-color: var(--navy);
-  color: var(--lightest-slate);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
   font-family: 'NTR', 'Segoe UI', sans-serif;
   font-size: 1.125rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-#root {
-  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1,
@@ -61,36 +84,79 @@ h3 {
 }
 
 a {
-  color: var(--green);
+  color: var(--color-accent);
   text-decoration: none;
   transition: color 0.25s ease;
 }
 
 a:hover {
-  color: var(--lightest-slate);
+  color: var(--color-text-primary);
+}
+
+@keyframes open-panel {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-open {
+  animation: open-panel 0.2s ease-out both;
 }
 
 ::selection {
-  background-color: var(--green);
-  color: var(--navy);
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
 }
 
 :focus-visible {
-  outline: 2px solid var(--green);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
-/* Polished custom scrollbar */
+.site-bg-pattern {
+  background-image: repeating-linear-gradient(
+    315deg,
+    var(--pattern-fg) 0,
+    var(--pattern-fg) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 10px 10px;
+}
+
+.shadow-boxing {
+  box-shadow: 0 0 60px -15px rgba(2, 12, 27, 0.9);
+}
+
+/* Vibrant accent glow on interactive elements in light mode */
+.light a,
+.light button {
+  transition: box-shadow 0.25s ease, transform 0.15s ease;
+}
+
+.light .shadow-boxing {
+  box-shadow: 0 0 60px -15px rgba(100, 116, 139, 0.15);
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: var(--navy);
+  background: var(--color-bg-primary);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: var(--lightest-navy);
-  border-radius: 4px;
+  background: var(--color-border);
+  border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--slate);
+  background: var(--color-text-muted);
 }

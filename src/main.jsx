@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { ThemeProvider } from './contexts/ThemeContext.jsx'
 import './index.css'
 import App from './App.jsx'
 import data from './data.js'
@@ -10,6 +11,8 @@ if (metaDescription) metaDescription.setAttribute('content', data.meta.descripti
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
 )

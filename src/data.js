@@ -3,32 +3,37 @@
 // Update text, links, and imported assets here.
 // Components should consume content from this file instead of hardcoding values.
 
-import portrait from './assets/portrait.png'
+import logo from './assets/logo.jpeg'
 import project1 from './assets/project1.png'
 import project3 from './assets/project3.png'
+import smtpMailersLogo from './assets/smtp-mailers-logo.png'
+import iqpathsLogo from './assets/iqpaths-logo.png'
+import iqpathsLogoWhite from './assets/iqpaths-logo-white.png'
 
 const data = {
   identity: {
     name: 'Sourabh Lathi',
     firstName: 'Sourabh',
-    role: 'Software Engineer | Full-Stack Developer',
-    location: 'Indore, Madhya Pradesh, India',
+    role: 'Full-Stack Developer & Software Engineer',
+    location: 'Indore, India',
     email: 'lathisaurav@gmail.com',
+    isOpenToWork: true,
+    logo,
   },
 
   hero: {
-    greeting: 'Hi, my name is',
-
+    greeting: "Hi, I'm",
+    name: 'Sourabh Lathi',
+    title: 'Software Engineer | Full Stack Developer',
     description:
-      'Software Engineer and Full-Stack Developer focused on building scalable, high-performance web applications using React, Node.js, and modern web technologies.',
-
-    portrait,
+      "I'm Sourabh Lathi, a software engineer and full-stack developer specializing in building scalable web applications. I craft responsive, user-centric web applications with modern technologies like React, Node.js, and TypeScript. Let's bring your ideas to life.",
+    portrait: logo,
 
     // Typewriter lines toggled on repeat by the Intro section.
     taglines: [
-      'I build scalable full-stack applications with React and Node.js.',
-      'I turn complex problems into clean, fast, and intuitive user experiences.',
-      'I build products that solve real-world problems.',
+      'Full-Stack Web Architect',
+      'React & Node.js Engineer',
+      'Open Source Contributor',
     ],
   },
 
@@ -106,21 +111,50 @@ const data = {
 
   jobs: [
     {
+      role: 'Full Stack Developer Intern',
+      org: 'SMTP Mailers',
+      period: 'Jun 2025 - July 2025',
+      location: '',
+      mode: '',
+      logo: smtpMailersLogo,
+      logoUrl: 'https://www.google.com/s2/favicons?domain=smtpmailers.com&sz=32',
+      url: 'https://smtpmailers.com/',
+
+      tech: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Redux', 'Node.js'],
+
+      summary:
+        'Contributed to building full-stack features and improving the developer experience at SMTP Mailers.',
+
+      highlights: [
+        'Worked across the full stack building and shipping features for the SMTP Mailers platform.',
+        'Collaborated on frontend architecture, API integration, and state management.',
+      ],
+    },
+
+    {
       role: 'Software Development Engineer Intern',
       org: 'IQPaths Technologies',
       period: 'Feb 2025 – May 2025',
+      location: 'Indore, India',
+      mode: 'On-site',
+      logo: iqpathsLogo,
+      logoWhite: iqpathsLogoWhite,
+      logoUrl: 'https://www.google.com/s2/favicons?domain=iqpaths.com&sz=32',
+      url: 'https://www.iqpaths.com/',
+
+      tech: ['React', 'TypeScript', 'Node.js', 'Tailwind CSS', 'Redux', 'REST APIs', 'Axios'],
 
       summary:
-        'Contributed to the development of production-oriented web applications, working across frontend architecture, API integration, state management, and reusable component systems.',
+        'Interned as a Software Development Engineer Intern at IQPaths Technologies, working across frontend architecture, API integration, and state management for production-oriented web applications.',
 
       highlights: [
-        'Designed and implemented frontend architecture for a course-selling platform serving 1,000+ users, improving component rendering and reducing page load times by approximately 25%.',
+        'Devised the frontend architecture for a course-selling platform utilizing React.js, handling 1,000+ users and reducing page load times by 25% through optimized component rendering.',
 
-        'Integrated and managed dynamic application data through 15+ REST APIs using Axios, improving data consistency and reducing API response handling latency.',
+        'Integrated dynamic content via 15+ REST APIs using Axios, ensuring seamless data consistency and decreasing data fetch latency by 20%.',
 
-        'Developed responsive interfaces for an AI-powered resume builder using TypeScript and Redux, supporting centralized state management and scalable application workflows for 500+ concurrent users.',
+        'Engineered multiple responsive pages for an AI-powered resume builder utilizing TypeScript and Redux, scaling the platform to support 500+ concurrent users with centralized global state management.',
 
-        'Built modular and reusable UI components using React and Tailwind CSS, improving development efficiency and reducing implementation time for subsequent features.',
+        'Constructed highly modular user interfaces utilizing Tailwind CSS, increasing component reusability and reducing frontend development time by 30% for subsequent feature rollouts.',
       ],
     },
   ],
@@ -145,7 +179,7 @@ const data = {
       ],
 
       // Replace these with the actual project deployment and repository URLs.
-      liveUrl: 'https://github.com/Sourabh-ctrl',
+      liveUrl: 'https://quick-chat-teal.vercel.app/',
       repoUrl: 'https://github.com/Sourabh-ctrl',
     },
 
@@ -281,8 +315,8 @@ const data = {
     profileUrl: 'https://wakatime.com/@67ecb5b0-b4d6-4900-950e-62baa85753f5',
     editor: 'VS Code',
     project: 'portfolio',
-    todayWorked: '3 hrs 40 mins',
-    yesterdayWorked: '4 hrs 15 mins',
+    todayWorked: '2 hrs 20 mins',
+    yesterdayWorked: '56 mins',
 
     // Embeddable JSON widget URLs, created at https://wakatime.com/share/embed (paste the .json link):
     // 1. Create a "Coding Activity" (or totals) widget, pick the range (Today / All Time), choose JSON format.

@@ -32,17 +32,33 @@ function wakatimeDevApiPlugin() {
             const auth = Buffer.from(apiKey).toString('base64')
             const headers = { Authorization: `Basic ${auth}` }
 
-            const [sbRes, userRes] = await Promise.all([
+            const now = new Date()
+            const todayStr = now.toISOString().split('T')[0]
+            const yest = new Date(now.getTime() - 24 * 60 * 60 * 1000)
+            const yestStr = yest.toISOString().split('T')[0]
+
+            const [sbRes, userRes, summariesRes] = await Promise.all([
               fetch('https://wakatime.com/api/v1/users/current/statusbar/today', { headers }),
               fetch('https://wakatime.com/api/v1/users/current', { headers }).catch(() => null),
+              fetch(
+                `https://wakatime.com/api/v1/users/current/summaries?start=${yestStr}&end=${todayStr}`,
+                { headers },
+              ).catch(() => null),
             ])
 
             const data = await sbRes.json()
             const userData = userRes && userRes.ok ? await userRes.json() : null
+            const summariesData = summariesRes && summariesRes.ok ? await summariesRes.json() : null
 
             const grandTotal = data?.data?.grand_total
             const projects = data?.data?.projects || []
             const editors = data?.data?.editors || []
+
+            const yestDay = summariesData?.data?.find((d) => d.range?.date === yestStr)
+            const todayDay = summariesData?.data?.find((d) => d.range?.date === todayStr)
+
+            const yesterdayWorked = yestDay?.grand_total?.text || '0 mins'
+            const todayWorked = grandTotal?.text || todayDay?.grand_total?.text || '0 mins'
 
             const lastHeartbeat = userData?.data?.last_heartbeat_at
             const timeoutMin = userData?.data?.timeout || 15
@@ -64,7 +80,9 @@ function wakatimeDevApiPlugin() {
             res.setHeader('Access-Control-Allow-Origin', '*')
             return res.end(
               JSON.stringify({
-                text: grandTotal?.text || '0 mins',
+                text: todayWorked,
+                todayWorked,
+                yesterdayWorked,
                 digital: grandTotal?.digital || '0:00',
                 seconds: grandTotal?.total_seconds || 0,
                 editor: activeEditor,

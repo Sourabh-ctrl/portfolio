@@ -8,17 +8,19 @@ import NavBar from './components/NavBar.jsx'
 
 function App() {
   return (
-    <div className="min-h-screen bg-navy text-lightest-slate font-sans antialiased selection:bg-green selection:text-navy">
+    <div className="min-h-screen bg-navy text-lightest-slate site-bg-pattern font-sans antialiased selection:bg-accent selection:text-navy">
       <NavBar />
-      <main>
-        <Intro />
-        <GitHubContributions />
-        <About />
-        <Experience />
-        <Projects />
-        {/* <LeetCode /> */}
-      </main>
-      <Footer />
+
+      <div className="mx-auto w-full max-w-4xl bg-navy/95 shadow-boxing min-h-screen px-4 sm:px-8 md:px-12 border-x border-lightest-navy/40">
+        <main>
+          <Intro />
+          <GitHubContributions />
+          <Experience />
+          <Projects />
+          <About />
+        </main>
+        <Footer />
+      </div>
     </div>
   )
 }

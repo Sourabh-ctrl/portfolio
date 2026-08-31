@@ -1,36 +1,200 @@
+import { useState } from 'react'
 import data from '../data.js'
+import { sound } from '../utils/sound.js'
 import FadeInSection from './FadeInSection.jsx'
+import { MapPin } from 'lucide-react'
+import techIcons from '../techIcons.jsx'
 
 function Experience() {
   const { jobs } = data
+  const [expandedIndex, setExpandedIndex] = useState(0)
+
+  const toggleJob = (index) => {
+    sound.playClick()
+    setExpandedIndex((prev) => (prev === index ? -1 : index))
+  }
+
   return (
-    <section className="max-w-[70rem] mx-auto px-5 py-16 md:py-24" id="experience">
+    <section className="pt-8 pb-12" id="experience">
       <FadeInSection>
-        <h2 className="flex items-center gap-4 text-white text-[clamp(1.4rem,3vw,2rem)] mb-10 whitespace-nowrap font-serif after:content-[''] after:block after:h-px after:flex-1 after:bg-lightest-navy/60">
-          <span className="text-green font-sans mr-0.5">/</span>
-          <span>experience</span>
+        <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">
+          <span className="text-accent font-sans mr-0.5">/</span>
+          <span>Experience</span>
         </h2>
-        <div className="relative flex flex-col gap-10 pl-7 before:content-[''] before:absolute before:left-2 before:top-1 before:bottom-1 before:w-[2px] before:bg-gradient-to-b before:from-transparent before:via-lightest-navy before:to-transparent">
-          {jobs.map((job) => (
-            <div className="relative" key={`${job.org}-${job.period}`}>
-              <div className="absolute -left-[1.72rem] top-2 w-3.5 h-3.5 rounded-full bg-navy border-2 border-green" />
-              <div>
-                <h3 className="text-white text-[1.4rem] font-serif m-0">
-                  {job.role} <span className="text-green font-sans font-normal">@</span>{' '}
-                  <span className="text-green font-sans font-normal">{job.org}</span>
-                </h3>
-                <p className="text-slate text-sm mt-1 mb-2">{job.period}</p>
-                <p className="text-light-slate text-base mb-3 leading-relaxed">{job.summary}</p>
-                <ul className="m-0 pl-5 text-slate grid gap-1.5 list-disc marker:text-green">
-                  {job.highlights.map((h) => (
-                    <li key={h} className="leading-relaxed">
-                      {h}
-                    </li>
-                  ))}
-                </ul>
+
+        <div className="mt-4">
+          {jobs.map((job, idx) => {
+            const isExpanded = expandedIndex === idx
+            const isLast = idx === jobs.length - 1
+
+            return (
+              <div key={`${job.org}-${job.period}`} className="group relative w-full">
+                <div className="flex w-full min-w-0 gap-3">
+                  {/* Timeline dot + line */}
+                  <div className="relative flex flex-col items-center pt-2.5">
+                    <div
+                      className={`z-10 h-2 w-2 rounded-full transition-colors duration-300 ${
+                        isExpanded
+                          ? 'bg-accent'
+                          : 'border-[1.5px] border-lightest-navy bg-navy'
+                      }`}
+                    />
+                    {!isLast && (
+                      <div className="mt-1 w-px flex-1 bg-lightest-navy/60" />
+                    )}
+                  </div>
+
+                  {/* Job card */}
+                  <div
+                    data-sound="open"
+                    onClick={() => toggleJob(idx)}
+                    className={`mb-2 w-full min-w-0 flex-1 cursor-pointer rounded-md px-3.5 py-3 transition-all duration-200 ${
+                      isExpanded
+                        ? 'bg-light-navy/60 ring-1 ring-lightest-navy'
+                        : 'hover:bg-light-navy/40'
+                    }`}
+                  >
+                    {/* Header row */}
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex min-w-0 items-center gap-2">
+                        {job.logoUrl ? (
+                          <img
+                            src={job.logoUrl}
+                            alt={job.org}
+                            width="20"
+                            height="20"
+                            className="h-5 w-5 shrink-0 rounded-sm"
+                          />
+                        ) : (
+                          <div className="h-5 w-5 shrink-0 rounded-sm bg-lightest-navy/60 flex items-center justify-center">
+                            <span className="text-[10px] font-bold text-accent">
+                              {job.org.charAt(0)}
+                            </span>
+                          </div>
+                        )}
+
+                        <h3 className="truncate text-[13.5px] font-semibold text-heading">
+                          {job.role}
+                        </h3>
+
+                        <span className="hidden text-lightest-navy sm:inline">&middot;</span>
+
+                        {job.url ? (
+                          <p className="hidden truncate text-[13px] text-slate sm:block">
+                            <a
+                              href={job.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="underline decoration-dotted underline-offset-2 hover:text-accent transition-colors"
+                            >
+                              {job.org}
+                            </a>
+                          </p>
+                        ) : (
+                          <p className="hidden truncate text-[13px] text-slate sm:block">
+                            {job.org}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="flex shrink-0 items-center gap-1.5">
+                        <span className="text-[11.5px] text-slate tabular-nums whitespace-nowrap">
+                          {job.period}
+                        </span>
+                        <svg
+                          className={`h-3 w-3 text-slate transition-transform duration-200 ${
+                            isExpanded ? 'rotate-180' : ''
+                          }`}
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        >
+                          <path d="M3 4.5 L6 7.5 L9 4.5" />
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* Mobile company name */}
+                    {job.url ? (
+                      <p className="mt-0.5 truncate text-[12.5px] text-slate sm:hidden">
+                        <a
+                          href={job.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="underline decoration-dotted underline-offset-2 hover:text-accent transition-colors"
+                        >
+                          {job.org}
+                        </a>
+                      </p>
+                    ) : (
+                      <p className="mt-0.5 truncate text-[12.5px] text-slate sm:hidden">
+                        {job.org}
+                      </p>
+                    )}
+
+                    {/* Expanded content */}
+                    <div
+                      className={`w-full max-w-full overflow-hidden transition-all duration-300 ${
+                        isExpanded ? 'opacity-100' : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      {/* Location & Mode */}
+                      {(job.location || job.mode) && (
+                        <div className="mt-2.5 flex flex-wrap items-center gap-2 text-[11.5px] text-slate">
+                          {job.location && (
+                            <span className="flex items-center gap-1">
+                              <MapPin className="size-2.5" />
+                              {job.location}
+                            </span>
+                          )}
+                          {job.mode && (
+                            <span className="rounded-full px-2 py-0.5 text-[11px] font-medium bg-accent/10 text-accent border border-accent/20">
+                              {job.mode}
+                            </span>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Summary */}
+                      {job.summary && (
+                        <p className="mt-2.5 text-[12.5px] text-light-slate leading-relaxed">
+                          {job.summary}
+                        </p>
+                      )}
+
+                      {/* Highlights */}
+                      <ul className="mt-2.5 list-disc space-y-1.5 pl-4 text-[12.5px] leading-relaxed wrap-break-word text-light-slate">
+                        {job.highlights.map((h) => (
+                          <li key={h}>{h}</li>
+                        ))}
+                      </ul>
+
+                      {/* Tech tags with icons */}
+                      {job.tech && job.tech.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                          {job.tech.map((tech) => (
+                            <span
+                              key={tech}
+                              className="flex items-center gap-1.5 rounded border border-lightest-navy/80 bg-navy px-2 py-1 text-[11px] font-medium text-light-slate"
+                            >
+                              {techIcons[tech] || (
+                                <span className="inline-block h-2 w-2 rounded-full bg-slate" />
+                              )}
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </FadeInSection>
     </section>
