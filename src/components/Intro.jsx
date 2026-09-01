@@ -128,7 +128,7 @@ function Intro() {
   ]
 
   return (
-    <section id="home" className="pt-24 pb-8 sm:pt-28 md:pt-32">
+    <section id="home" className="pt-24 pb-8 sm:pt-28 md:pt-32 scroll-mt-20">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
           {/* Avatar with live WakaTime presence indicator */}
@@ -345,6 +345,7 @@ function Intro() {
               target={s.href.startsWith('mailto:') ? undefined : '_blank'}
               rel="noreferrer noopener"
               onClick={() => sound.playClick()}
+              aria-label={s.label}
               className="group flex items-center gap-2 rounded-lg border border-lightest-navy/60 bg-light-navy/70 px-3 py-1.5 text-xs font-sans font-medium text-lightest-slate hover:bg-lightest-navy hover:text-accent hover:border-accent/50 transition-all shadow-xs active:scale-95"
             >
               <span className="text-slate group-hover:text-accent transition-colors">

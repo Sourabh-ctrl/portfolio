@@ -7,7 +7,7 @@ function About() {
   const { about } = data
 
   return (
-    <section className="pt-8 pb-12" id="skills">
+    <section className="pt-16 pb-12 scroll-mt-20" id="skills">
       <FadeInSection>
         <div className="mb-6">
           <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">

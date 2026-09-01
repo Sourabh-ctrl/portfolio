@@ -3,6 +3,7 @@ import About from './components/About.jsx'
 import Experience from './components/Experience.jsx'
 import Projects from './components/Projects.jsx'
 import GitHubContributions from './components/GitHubContributions.jsx'
+import Testimonials from './components/Testimonials.jsx'
 import Footer from './components/Footer.jsx'
 import NavBar from './components/NavBar.jsx'
 
@@ -18,6 +19,7 @@ function App() {
           <Experience />
           <Projects />
           <About />
+          <Testimonials />
         </main>
         <Footer />
       </div>

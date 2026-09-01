@@ -15,7 +15,7 @@ function Experience() {
   }
 
   return (
-    <section className="pt-8 pb-12" id="experience">
+    <section className="pt-16 pb-12 scroll-mt-20" id="experience">
       <FadeInSection>
         <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">
           <span className="text-accent font-sans mr-0.5">/</span>

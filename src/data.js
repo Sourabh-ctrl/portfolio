@@ -114,20 +114,18 @@ const data = {
       role: 'Full Stack Developer Intern',
       org: 'SMTP Mailers',
       period: 'Jun 2025 - July 2025',
-      location: '',
-      mode: '',
+      location: 'Indore, India',
+      mode: 'On-site',
       logo: smtpMailersLogo,
       logoUrl: 'https://www.google.com/s2/favicons?domain=smtpmailers.com&sz=32',
       url: 'https://smtpmailers.com/',
 
       tech: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Redux', 'Node.js'],
 
-      summary:
-        'Contributed to building full-stack features and improving the developer experience at SMTP Mailers.',
-
       highlights: [
-        'Worked across the full stack building and shipping features for the SMTP Mailers platform.',
-        'Collaborated on frontend architecture, API integration, and state management.',
+        'Secure Access Control: Engineered a robust authentication system with backend API integration and session persistence to ensure secure, authorized-only access.',
+        'Data Visualization Dashboard: Developed an interactive admin interface featuring dynamic charts and tables to transform complex datasets into clear, actionable insights.',
+        'Full-Lifecycle Development: Managed the project from architectural planning and repository structuring to final debugging, rigorous testing, and documentation.',
       ],
     },
 
@@ -143,9 +141,6 @@ const data = {
       url: 'https://www.iqpaths.com/',
 
       tech: ['React', 'TypeScript', 'Node.js', 'Tailwind CSS', 'Redux', 'REST APIs', 'Axios'],
-
-      summary:
-        'Interned as a Software Development Engineer Intern at IQPaths Technologies, working across frontend architecture, API integration, and state management for production-oriented web applications.',
 
       highlights: [
         'Devised the frontend architecture for a course-selling platform utilizing React.js, handling 1,000+ users and reducing page load times by 25% through optimized component rendering.',
@@ -206,81 +201,77 @@ const data = {
     },
   ],
 
-  leetcodeDaily: {
-    heading: 'daily grind',
-    profileUrl: 'https://leetcode.com/u/sourabhlathi',
+  testimonials: [
+    {
+      name: 'Hricha Sharma',
+      quote:
+        'Working with Sourabh was a seamless experience. His professionalism, eye for detail, and commitment to delivering quality work truly set him apart.',
+      avatarUrl: 'https://api.dicebear.com/7.x/adventurer/svg?seed=HrichaSharma&gender=female',
+    },
+    {
+      name: 'Vanisha Arora',
+      quote:
+        'Sourabh consistently delivered top-notch work within deadlines and showed genuine dedication to every aspect of the project. Highly recommended!',
+      avatarUrl: 'https://api.dicebear.com/7.x/adventurer/svg?seed=VanishaArora&gender=female',
+    },
+    {
+      name: 'Yash Ladha',
+      quote:
+        'Sourabh combines deep technical expertise with outstanding teamwork. He is always eager to collaborate and tackle challenges head-on.',
+      avatarUrl: 'https://api.dicebear.com/7.x/adventurer/svg?seed=YashLadha&gender=male',
+    },
+    {
+      name: 'Sanket Gupta',
+      quote:
+        'Sourabh has a sharp eye for design and a knack for turning ideas into functional, polished products. His attention to detail really stands out.',
+      avatarUrl: 'https://api.dicebear.com/7.x/adventurer/svg?seed=SanketGupta&gender=male',
+    },
+    {
+      name: 'Vishesh Verma',
+      quote:
+        'Sourabh is a skilled and passionate developer with a strong problem-solving mindset. Reliable, creative, and always focused on building high-quality products.',
+      avatarUrl: 'https://api.dicebear.com/7.x/adventurer/svg?seed=VisheshVerma&gender=male',
+    },
+  ],
 
-    description:
-      'I solve the LeetCode daily question and document my approach, keeping my problem-solving skills sharp. Each entry links to my solution on LeetCode.',
-
-    // Add your solved daily questions here.
-    // `date` can be any string (e.g. '2026-08-30'), `difficulty` is one of
-    // Easy / Medium / Hard, and `solutionUrl` can point to your LeetCode
-    // submission or a repo/gist with the code.
-    problems: [
-      {
-        date: '2026-08-29',
-        title: 'Two Sum',
-        difficulty: 'Easy',
-        topics: ['Array', 'Hash Map'],
-        solutionUrl: 'https://leetcode.com/problems/two-sum/',
-      },
-      {
-        date: '2026-08-28',
-        title: 'Contains Duplicate',
-        difficulty: 'Easy',
-        topics: ['Array', 'Hash Set'],
-        solutionUrl: 'https://leetcode.com/problems/contains-duplicate/',
-      },
-      {
-        date: '2026-08-27',
-        title: 'Valid Anagram',
-        difficulty: 'Easy',
-        topics: ['String', 'Hash Map'],
-        solutionUrl: 'https://leetcode.com/problems/valid-anagram/',
-      },
-      {
-        date: '2026-08-26',
-        title: 'Best Time to Buy and Sell Stock',
-        difficulty: 'Easy',
-        topics: ['Array', 'Sliding Window'],
-        solutionUrl: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock/',
-      },
-    ],
-  },
-
-  terminalTyper: {
-    // Code snippets typed in the terminal game, ordered short -> long.
-    // The game draws from an ever-later window as time passes.
-    snippets: [
-      'npm install',
-      'git pull',
-      'npm run dev',
-      'yarn add react',
-      'git commit -m "fix"',
-      'await fetch()',
-      'console.log(x)',
-      'export default App',
-      'const ok = true',
-      'npm run build',
-      'git push origin main',
-      'app.listen(3000)',
-      'await db.connect()',
-      'const data = await ajax()',
-      'setInterval(loop, 16)',
-      'import { useState } from "react"',
-      'return response.json()',
-      'if (err) console.error(err)',
-      'socket.emit("typing", msg)',
-      'const user = await User.findById(id)',
-      'fetch("/api/users").then(r => r.json())',
-      'useEffect(() => { loop() }, [])',
-      'password = await bcrypt.hash(pw, 10)',
-      'router.post("/auth", authController.login)',
-      'socket.on("message", (msg) => broadcast(msg))',
-      'export default function App() { return null }',
-    ],
-  },
+  blog: [
+    {
+      title: 'Building Real-Time Chat with Socket.io',
+      date: '2026-08-15',
+      description:
+        'A practical deep-dive into architecting a scalable real-time chat application with Socket.io, covering rooms, typing indicators, and JWT authentication.',
+      tags: ['React', 'Node.js', 'WebSocket'],
+      readTime: '7 min read',
+      url: '#',
+    },
+    {
+      title: '5 React Performance Patterns I Swear By',
+      date: '2026-07-28',
+      description:
+        'From memoization to code splitting, here are the React performance techniques that cut our page load times by 25% and keep the UI buttery smooth.',
+      tags: ['React', 'Performance'],
+      readTime: '5 min read',
+      url: '#',
+    },
+    {
+      title: 'Scaling Node.js APIs for Concurrent Users',
+      date: '2026-07-10',
+      description:
+        'Lessons from supporting 500+ concurrent users: connection pooling, caching strategies, and the database indexes that made the difference.',
+      tags: ['Node.js', 'MongoDB', 'System Design'],
+      readTime: '9 min read',
+      url: '#',
+    },
+    {
+      title: 'Writing Idiomatic TypeScript: Types That Fight For You',
+      date: '2026-06-22',
+      description:
+        'How to leverage TypeScript\'s type system to eliminate entire classes of bugs before they reach production, with real-world examples.',
+      tags: ['TypeScript', 'JavaScript'],
+      readTime: '6 min read',
+      url: '#',
+    },
+  ],
 
   github: {
     username: 'Sourabh-ctrl',

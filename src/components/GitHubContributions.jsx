@@ -202,13 +202,13 @@ function GitHubContributions() {
 
   return (
     <section
-      className="pt-6 pb-10"
+      className="pt-16 pb-12 scroll-mt-20"
       id="activity"
     >
       <FadeInSection>
         {/* Section Heading matching visheshxdevs header style */}
         <div className="mb-4">
-          <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-white flex items-center gap-2">
+          <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">
             <span className="text-accent font-sans mr-0.5">/</span>
             <span>GitHub Activity</span>
           </h2>
@@ -258,19 +258,19 @@ function GitHubContributions() {
             </div>
           </div>
 
-          {/* Calendar Heatmap: Responsive SVG that fits the exact 1 year without horizontal scroll */}
-          <div className="relative w-full">
+          {/* Calendar Heatmap: Scrollable on small screens, full-width on larger */}
+          <div className="relative w-full overflow-x-auto">
             {loading && !weeks.length ? (
               <div className="flex flex-col gap-2 py-8 animate-pulse items-center justify-center">
                 <div className="h-4 w-48 bg-lightest-navy/40 rounded"></div>
                 <div className="h-28 w-full max-w-[50rem] bg-light-navy rounded border border-lightest-navy/60"></div>
               </div>
             ) : (
-              <div className="w-full">
+              <div className="min-w-[720px] w-full">
                 {/* SVG Heatmap: width="100%" with viewBox guarantees 53 weeks fit naturally */}
                 <svg
                   viewBox={`0 0 ${32 + Math.max(weeks.length, 52) * 13 + 6} 118`}
-                  className="w-full h-auto overflow-visible select-none"
+                  className="w-full h-auto overflow-visible select-none pr-2"
                 >
                   {/* Month header labels */}
                   {monthHeaders.map((mh, idx) => (
