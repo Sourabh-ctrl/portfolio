@@ -111,25 +111,6 @@ const data = {
 
   jobs: [
     {
-      role: 'Full Stack Developer Intern',
-      org: 'SMTP Mailers',
-      period: 'Jun 2025 - July 2025',
-      location: 'Indore, India',
-      mode: 'On-site',
-      logo: smtpMailersLogo,
-      logoUrl: 'https://www.google.com/s2/favicons?domain=smtpmailers.com&sz=32',
-      url: 'https://smtpmailers.com/',
-
-      tech: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Redux', 'Node.js'],
-
-      highlights: [
-        'Secure Access Control: Engineered a robust authentication system with backend API integration and session persistence to ensure secure, authorized-only access.',
-        'Data Visualization Dashboard: Developed an interactive admin interface featuring dynamic charts and tables to transform complex datasets into clear, actionable insights.',
-        'Full-Lifecycle Development: Managed the project from architectural planning and repository structuring to final debugging, rigorous testing, and documentation.',
-      ],
-    },
-
-    {
       role: 'Software Development Engineer Intern',
       org: 'IQPaths Technologies',
       period: 'Feb 2025 – May 2025',
@@ -150,6 +131,44 @@ const data = {
         'Engineered multiple responsive pages for an AI-powered resume builder utilizing TypeScript and Redux, scaling the platform to support 500+ concurrent users with centralized global state management.',
 
         'Constructed highly modular user interfaces utilizing Tailwind CSS, increasing component reusability and reducing frontend development time by 30% for subsequent feature rollouts.',
+      ],
+    },
+
+    {
+      role: 'Full Stack Developer Intern',
+      org: 'SMTP Mailers',
+      period: 'Jun 2025 - July 2025',
+      location: 'Indore, India',
+      mode: 'On-site',
+      logo: smtpMailersLogo,
+      logoUrl: 'https://www.google.com/s2/favicons?domain=smtpmailers.com&sz=32',
+      url: 'https://smtpmailers.com/',
+
+      tech: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Redux', 'Node.js'],
+
+      highlights: [
+        'Secure Access Control: Engineered a robust authentication system with backend API integration and session persistence to ensure secure, authorized-only access.',
+        'Data Visualization Dashboard: Developed an interactive admin interface featuring dynamic charts and tables to transform complex datasets into clear, actionable insights.',
+        'Full-Lifecycle Development: Managed the project from architectural planning and repository structuring to final debugging, rigorous testing, and documentation.',
+      ],
+    },
+
+    {
+      role: 'Frontend Developer Intern',
+      org: 'Track My Fleetix',
+      period: 'Apr 2026 - May 2026',
+      location: 'Indore, India',
+      mode: 'Remote',
+      url: 'https://www.trackmyfleetix.com/',
+      logoUrl: 'https://www.google.com/s2/favicons?domain=trackmyfleetix.com&sz=32',
+
+      tech: ['React', 'Redux', 'React Router', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'Git'],
+
+      highlights: [
+        'Dashboard Development: Developed and enhanced responsive dashboards for fleet and logistics management, presenting key operational data in a clear and user-friendly interface.',
+        'FASTag Management: Built frontend interfaces for FASTag-related management workflows, helping users efficiently view, manage, and track vehicle and transaction-related information.',
+        'Multiple Frontend Pages: Developed and maintained multiple responsive web pages and UI components across the platform, ensuring consistent design and smooth user experience.',
+        'Frontend Optimization: Improved application usability by creating reusable components, handling dynamic data, and implementing responsive layouts for different screen sizes.',
       ],
     },
   ],
