@@ -84,7 +84,7 @@ function Projects() {
                 {project.tech.map((t) => (
                   <span
                     key={t}
-                    className="flex items-center gap-1.5 rounded-md bg-accent/10 text-accent px-2 py-1 text-xs font-mono font-medium border border-accent/20"
+                    className="tech-tag flex items-center gap-1.5 rounded-md bg-accent/10 text-accent px-2 py-1 text-xs font-mono font-medium border border-accent/20"
                   >
                     {techIcons[t] || (
                       <span className="inline-block h-2 w-2 rounded-full bg-slate" />

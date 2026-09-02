@@ -221,7 +221,7 @@ function GitHubContributions() {
         <div
           ref={cardRef}
           style={GITHUB_FONT_STYLE}
-          className="relative bg-[#0d1117] border border-neutral-800 rounded-xl p-4 sm:p-6 shadow-2xl backdrop-blur-md text-[#e6edf3]"
+          className="github-card relative bg-[#0d1117] border border-neutral-800 rounded-xl p-4 sm:p-6 shadow-2xl backdrop-blur-md text-[#e6edf3]"
         >
           {/* Card Header Bar */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-[#21262d]">

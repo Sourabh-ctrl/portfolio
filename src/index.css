@@ -72,10 +72,10 @@
   --color-bg-surface: #f1f5f9;
   --color-bg-surface-hover: #e2e8f0;
   --color-border: #cbd5e1;
-  --color-text-heading: #0f172a;
-  --color-text-primary: #1e293b;
-  --color-text-secondary: #334155;
-  --color-text-muted: #475569;
+  --color-text-heading: #000000;
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-text-muted: #000000;
   --color-accent: #1d4ed8;
   --color-accent-glow: rgba(29, 78, 216, 0.18);
   --pattern-fg: rgba(29, 78, 216, 0.05);
@@ -158,6 +158,32 @@ a:hover {
 .light a,
 .light button {
   transition: box-shadow 0.25s ease, transform 0.15s ease;
+}
+
+/* Light mode: black link and button text, grey on hover */
+.light a,
+.light button {
+  color: #000000;
+}
+
+.light a:hover,
+.light button:hover {
+  color: #6b7280;
+}
+
+/* Light mode: black text on skill/tag chips */
+.light .tech-tag {
+  color: #000000;
+}
+
+/* Keep the always-dark GitHub card's own text colors */
+.light .github-card a,
+.light .github-card a:hover {
+  color: #58a6ff;
+}
+
+.light .github-card {
+  color: #e6edf3;
 }
 
 .light .shadow-boxing {

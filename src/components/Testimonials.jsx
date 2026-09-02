@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import data from '../data.js'
 import FadeInSection from './FadeInSection.jsx'
 import Marquee from './Marquee.jsx'
 
 function Testimonials() {
   const { testimonials } = data
+  const [hoveredName, setHoveredName] = useState(null)
 
   return (
     <section id="testimonials" className="pt-16 pb-12 scroll-mt-20">
@@ -18,10 +20,14 @@ function Testimonials() {
         </p>
       </div>
 
-      <Marquee>
+      <Marquee paused={hoveredName !== null}>
         {testimonials.map((t) => (
           <article
             key={t.name}
+            onMouseEnter={() => setHoveredName(t.name)}
+            onMouseLeave={() => setHoveredName(null)}
+            onFocus={() => setHoveredName(t.name)}
+            onBlur={() => setHoveredName(null)}
             className="group flex w-[280px] sm:w-[340px] shrink-0 flex-col rounded-2xl border border-lightest-navy/60 bg-light-navy/60 p-6 transition-all duration-300 hover:border-accent/60 hover:shadow-xl"
           >
               <div className="flex items-start gap-2.5">

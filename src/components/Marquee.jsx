@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-function Marquee({ children, speed = 35 }) {
+function Marquee({ children, speed = 35, paused = false }) {
   const trackRef = useRef(null)
   const [duration, setDuration] = useState(null)
 
@@ -23,10 +23,10 @@ function Marquee({ children, speed = 35 }) {
   }, [speed])
 
   return (
-    <div className="marquee-edge-fade group overflow-hidden py-3">
+    <div className="marquee-edge-fade overflow-hidden py-3">
       <div
         ref={trackRef}
-        className="marquee-track flex w-max group-hover:[animation-play-state:paused]"
+        className={`marquee-track flex w-max ${paused ? '[animation-play-state:paused]' : ''}`}
         style={{ '--marquee-duration': `${duration}s` }}
       >
         <div className="flex gap-5 pr-5">{children}</div>
