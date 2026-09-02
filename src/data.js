@@ -107,6 +107,15 @@ const data = {
         ],
       },
     ],
+
+    // Advanced topics currently being explored (shown as a distinct strip).
+    currentlyLearning: [
+      'Kafka',
+      'Kubernetes',
+      'System Design',
+      'Docker / K8s',
+      'Message Queues',
+    ],
   },
 
   jobs: [

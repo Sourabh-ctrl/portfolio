@@ -26,7 +26,7 @@ function Marquee({ children, speed = 35, paused = false }) {
     <div className="marquee-edge-fade overflow-hidden py-3">
       <div
         ref={trackRef}
-        className={`marquee-track flex w-max ${paused ? '[animation-play-state:paused]' : ''}`}
+        className={`marquee-track flex w-max ${paused ? '[animation-play-state:paused]' : ''} motion-reduce:[animation-play-state:paused]`}
         style={{ '--marquee-duration': `${duration}s` }}
       >
         <div className="flex gap-5 pr-5">{children}</div>

@@ -5,8 +5,8 @@ A single-page personal portfolio inspired by [gazijarin.com](https://gazijarin.c
 ## Stack
 
 - [Vite](https://vite.dev) + [React 19](https://react.dev) (JSX)
-- [MUI](https://mui.com) v9 + Emotion
-- [Bootstrap 5](https://getbootstrap.com) + react-bootstrap
+- [Tailwind CSS v4](https://tailwindcss.com) (via `@tailwindcss/vite`)
+- [lucide-react](https://lucide.dev) icons
 - [react-type-animation](https://www.npmjs.com/package/react-type-animation)
 
 ## Setup
@@ -27,20 +27,16 @@ Quality gates (no test suite — deliberate): `npm run lint` and `npm run build`
 
 ## Replace the placeholder content
 
-**Every piece of site copy lives in one file: `src/data.js`.** Rewriting the site is a `data.js` edit — components never hardcode content. All placeholder values are prefixed `[PLACEHOLDER]` so you can search for any that slip through before going live.
+**Every piece of site copy lives in one file: `src/data.js`.** Rewriting the site is a `data.js` edit — components never hardcode content.
 
-### Portrait (the ASCII hero)
+### Hero avatar
 
-The portrait is read from `src/assets/portrait.png` (imported by `src/components/AsciiPortrait.jsx`). A high-contrast, head-and-shoulders photo works best — ASCII conversion is lossy.
-
-The current file was generated from the raw ChatGPT image at the repo root: cropped around the face, resized to 480×640, and contrast-enhanced with CLAHE. To regenerate with different framing, crop the raw image around the face and apply CLAHE (e.g. OpenCV) before saving.
-
-To swap in another photo: place it at `src/assets/portrait.png`, then tune the face-feature anchors (`FACE` in `src/components/AsciiPortrait.jsx`) until the animated eyes/mouth sit on the photo's real features. Conversion constants (`CHAR_SET`, particle size/gaps) live in the same file.
+The hero avatar and nav-brand image are read from `src/assets/logo.jpeg` (imported by `src/data.js` as `hero.portrait` / `identity.logo`, and rendered by `src/components/Intro.jsx` and `src/components/NavBar.jsx`). To swap in another photo, replace `src/assets/logo.jpeg` — no code change needed.
 
 ### Projects
 
 - Add/remove objects in `data.projects` (image, description, tech, `liveUrl`, `repoUrl`).
-- Drop each project image into `public/assets/` and reference it from the matching object.
+- Drop each project image into `src/assets/` and import it in `data.js`, then reference it from the matching object.
 
 ### Jobs
 
@@ -59,20 +55,8 @@ To swap in another photo: place it at `src/assets/portrait.png`, then tune the f
 The live URL is:
 
 ```
-https://<github-username>.github.io/portfolio/
+https://sourabh-ctrl.github.io/portfolio/
 ```
 
-> Replace `<github-username>` with your actual GitHub username, and confirm `vite.config.js` uses `base: '/portfolio/'`.
-
-To publish:
-
-1. Create a new GitHub repository named `portfolio` (public).
-2. Push this repo to it:
-   ```bash
-   git remote add origin https://github.com/<github-username>/portfolio.git
-   git branch -M main
-   git push -u origin main
-   ```
-3. In the repo on GitHub: **Settings → Pages → Source: GitHub Actions**.
-4. The `deploy.yml` workflow builds and publishes `dist/` to Pages automatically on every push to `main`. You can also trigger it manually from the **Actions** tab.
+`vite.config.js` uses `base: '/portfolio/'`, so the production build outputs to `dist/` with `/portfolio/`-prefixed asset paths — deploy the contents of `dist/` to the Pages root of the `portfolio` repository.
 

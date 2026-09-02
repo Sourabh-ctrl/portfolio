@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { TypeAnimation } from 'react-type-animation'
 import data from '../data.js'
 import { sound } from '../utils/sound.js'
@@ -39,6 +39,8 @@ function EmailSvg() {
 function Intro() {
   const { identity, hero } = data
   const [showResume, setShowResume] = useState(false)
+  const resumeTriggerRef = useRef(null)
+  const resumeDialogRef = useRef(null)
 
   const [wakaStats, setWakaStats] = useState(() => {    const cached = localStorage.getItem('wakatime_stats')
     if (cached) {
@@ -97,14 +99,34 @@ function Intro() {
 
   useEffect(() => {
     if (!showResume) return
+    const dialog = resumeDialogRef.current
+    const trigger = resumeTriggerRef.current
     const onKey = (e) => {
-      if (e.key === 'Escape') setShowResume(false)
+      if (e.key === 'Escape') {
+        setShowResume(false)
+        return
+      }
+      if (e.key !== 'Tab' || !dialog) return
+      const focusables = dialog.querySelectorAll(
+        'a[href], button:not([disabled]), iframe',
+      )
+      if (focusables.length === 0) return
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
     }
     document.body.style.overflow = 'hidden'
     window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = ''
       window.removeEventListener('keydown', onKey)
+      trigger?.focus()
     }
   }, [showResume])
 
@@ -261,6 +283,7 @@ function Intro() {
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <button
           type="button"
+          ref={resumeTriggerRef}
           onClick={() => {
             sound.playClick()
             setShowResume((v) => !v)
@@ -291,6 +314,7 @@ function Intro() {
           aria-label="Resume preview"
         >
           <div
+            ref={resumeDialogRef}
             className="relative w-full max-w-3xl rounded-2xl border border-lightest-navy bg-light-navy/95 p-4 shadow-2xl overflow-hidden animate-open"
             onClick={(e) => e.stopPropagation()}
           >

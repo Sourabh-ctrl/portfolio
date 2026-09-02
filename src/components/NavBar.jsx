@@ -17,6 +17,7 @@ function NavBar() {
   const [isMuted, setIsMuted] = useState(() => sound.isMuted())
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeId, setActiveId] = useState('#home')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +25,32 @@ function NavBar() {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const ids = navItems.map((i) => i.href)
+    const sections = ids
+      .map((id) => document.querySelector(id))
+      .filter(Boolean)
+
+    if (sections.length === 0) return undefined
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(`#${entry.target.id}`)
+          }
+        })
+      },
+      {
+        rootMargin: '-40% 0px -55% 0px',
+        threshold: 0,
+      },
+    )
+
+    sections.forEach((s) => observer.observe(s))
+    return () => observer.disconnect()
   }, [])
 
   const toggleSound = () => {
@@ -69,17 +96,27 @@ function NavBar() {
           <div className="flex items-center gap-2 sm:gap-2.5">
             {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center gap-1">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={handleNavClick}
-                  className="relative px-3.5 py-2 text-sm font-sans font-semibold tracking-wide text-slate hover:text-accent rounded-lg transition-all hover:bg-light-navy/70 group"
-                >
-                  {item.label}
-                  <span className="absolute left-1/2 -bottom-0.5 h-0.5 w-0 -translate-x-1/2 rounded-full bg-accent transition-all duration-300 group-hover:w-2/3" />
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const isActive = activeId === item.href
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={handleNavClick}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`relative px-3.5 py-2 text-sm font-sans font-semibold tracking-wide rounded-lg transition-all hover:bg-light-navy/70 group ${
+                      isActive ? 'text-accent' : 'text-slate hover:text-accent'
+                    }`}
+                  >
+                    {item.label}
+                    <span
+                      className={`absolute left-1/2 -bottom-0.5 h-0.5 -translate-x-1/2 rounded-full bg-accent transition-all duration-300 ${
+                        isActive ? 'w-2/3' : 'w-0 group-hover:w-2/3'
+                      }`}
+                    />
+                  </a>
+                )
+              })}
             </div>
 
             <div className="h-5 w-px bg-lightest-navy hidden lg:block mx-1" />
@@ -142,7 +179,11 @@ function NavBar() {
                 key={item.href}
                 href={item.href}
                 onClick={handleNavClick}
-                className="px-4 py-3 text-base font-sans font-semibold rounded-xl text-lightest-slate hover:text-accent hover:bg-lightest-navy/50 transition-colors"
+                className={`px-4 py-3 text-base font-sans font-semibold rounded-xl transition-colors ${
+                  activeId === item.href
+                    ? 'text-accent bg-lightest-navy/40'
+                    : 'text-lightest-slate hover:text-accent hover:bg-lightest-navy/50'
+                }`}
               >
                 {item.label}
               </a>

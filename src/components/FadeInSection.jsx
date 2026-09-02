@@ -29,7 +29,7 @@ function FadeInSection({ children, className = '' }) {
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
       } ${className}`.trim()}
     >
-      {children}
+      {typeof children === 'function' ? children({ visible }) : children}
     </div>
   )
 }
