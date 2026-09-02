@@ -29,28 +29,31 @@ function NavBar() {
 
   useEffect(() => {
     const ids = navItems.map((i) => i.href)
-    const sections = ids
-      .map((id) => document.querySelector(id))
-      .filter(Boolean)
+    const getSections = () =>
+      ids
+        .map((id) => document.querySelector(id))
+        .filter(Boolean)
 
-    if (sections.length === 0) return undefined
+    const updateActive = () => {
+      const sections = getSections()
+      if (sections.length === 0) return
+      const line = window.innerHeight * 0.4
+      let current = sections[0]
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= line) {
+          current = section
+        }
+      }
+      setActiveId(`#${current.id}`)
+    }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(`#${entry.target.id}`)
-          }
-        })
-      },
-      {
-        rootMargin: '-40% 0px -55% 0px',
-        threshold: 0,
-      },
-    )
-
-    sections.forEach((s) => observer.observe(s))
-    return () => observer.disconnect()
+    updateActive()
+    window.addEventListener('scroll', updateActive, { passive: true })
+    window.addEventListener('resize', updateActive, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', updateActive)
+      window.removeEventListener('resize', updateActive)
+    }
   }, [])
 
   const toggleSound = () => {
@@ -90,6 +93,14 @@ function NavBar() {
             <span className="font-serif font-bold text-base tracking-tight text-heading hidden sm:inline-block">
               {data.identity.name}
             </span>
+            {/* Monogram lockup */}
+            {/* <span
+              aria-hidden="true"
+              className="hidden sm:inline-flex items-center justify-center h-7 w-7 rounded-md border border-accent/50 bg-accent/10 text-accent font-mono font-bold text-[11px] tracking-tight select-none group-hover:bg-accent group-hover:text-navy transition-colors"
+            >
+              {data.identity.firstName?.[0] || 'S'}
+              {data.identity.name.split(' ').pop()?.[0] || 'L'}
+            </span> */}
           </a>
 
           {/* Controls & Nav Links */}

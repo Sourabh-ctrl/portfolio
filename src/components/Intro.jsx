@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { TypeAnimation } from 'react-type-animation'
 import data from '../data.js'
 import { sound } from '../utils/sound.js'
-import { FileText, Send, MapPin, X, ExternalLink, Code2 } from 'lucide-react'
+import Magnetic from './Magnetic.jsx'
+import TerminalOverlay from './TerminalOverlay.jsx'
+import { FileText, Send, X, ExternalLink } from 'lucide-react'
 
 function GithubSvg() {
   return (
@@ -281,79 +284,87 @@ function Intro() {
 
       {/* CTA Buttons */}
       <div className="mt-6 flex flex-wrap items-center gap-3">
-        <button
-          type="button"
-          ref={resumeTriggerRef}
-          onClick={() => {
-            sound.playClick()
-            setShowResume((v) => !v)
-          }}
-          className="inline-flex items-center gap-2 rounded-lg border border-accent/40 bg-light-navy hover:bg-lightest-navy/60 px-4 py-2 text-sm font-sans font-medium text-lightest-slate hover:text-accent shadow-sm transition-all active:scale-95 cursor-pointer"
-        >
-          <FileText className="size-4 text-accent" />
-          <span>{showResume ? 'Close Resume' : 'Resume / CV'}</span>
-        </button>
+        <Magnetic>
+          <button
+            type="button"
+            ref={resumeTriggerRef}
+            onClick={() => {
+              sound.playClick()
+              setShowResume((v) => !v)
+            }}
+            className="inline-flex items-center gap-2 rounded-lg border border-accent/40 bg-light-navy hover:bg-lightest-navy/60 px-4 py-2 text-sm font-sans font-medium text-lightest-slate hover:text-accent shadow-sm transition-all active:scale-95 cursor-pointer"
+          >
+            <FileText className="size-4 text-accent" />
+            <span>{showResume ? 'Close Resume' : 'Resume / CV'}</span>
+          </button>
+        </Magnetic>
 
-        <a
-          href={`mailto:${identity.email}`}
-          onClick={() => sound.playClick()}
-          className="inline-flex items-center gap-2 rounded-lg border border-accent bg-accent/10 hover:bg-accent/20 text-accent px-5 py-2 text-sm font-sans font-semibold shadow-sm transition-all active:scale-95 cursor-pointer"
-        >
-          <Send className="size-4" />
-          <span>Say hi!</span>
-        </a>
+        <Magnetic>
+          <a
+            href={`mailto:${identity.email}`}
+            onClick={() => sound.playClick()}
+            className="inline-flex items-center gap-2 rounded-lg border border-accent bg-accent/10 hover:bg-accent/20 text-accent px-5 py-2 text-sm font-sans font-semibold shadow-sm transition-all active:scale-95 cursor-pointer"
+          >
+            <Send className="size-4" />
+            <span>Say hi!</span>
+          </a>
+        </Magnetic>
+
+        <TerminalOverlay onOpenResume={() => setShowResume(true)} />
       </div>
 
       {/* Resume Modal */}
-      {showResume && (
-        <div
-          className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/70 backdrop-blur-sm p-4 py-10"
-          onClick={() => setShowResume(false)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Resume preview"
-        >
+      {showResume &&
+        createPortal(
           <div
-            ref={resumeDialogRef}
-            className="relative w-full max-w-3xl rounded-2xl border border-lightest-navy bg-light-navy/95 p-4 shadow-2xl overflow-hidden animate-open"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/70 backdrop-blur-sm p-4 py-10"
+            onClick={() => setShowResume(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Resume preview"
           >
-            <div className="flex items-center justify-between pb-3 border-b border-lightest-navy/60">
-              <div className="flex items-center gap-2 text-sm font-semibold text-heading">
-                <FileText className="size-4 text-accent" />
-                <span>Resume — {identity.name}</span>
+            <div
+              ref={resumeDialogRef}
+              className="relative w-full max-w-3xl rounded-2xl border border-lightest-navy bg-light-navy/95 p-4 shadow-2xl overflow-hidden animate-open"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between pb-3 border-b border-lightest-navy/60">
+                <div className="flex items-center gap-2 text-sm font-semibold text-heading">
+                  <FileText className="size-4 text-accent" />
+                  <span>Resume — {identity.name}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href="/portfolio/resume.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    download="Sourabh_Lathi_Resume.pdf"
+                    className="text-xs font-medium text-accent hover:text-heading flex items-center gap-1 px-2.5 py-1 rounded-md border border-accent/40 bg-navy transition-colors"
+                  >
+                    <span>Download</span>
+                    <ExternalLink className="size-3" />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setShowResume(false)}
+                    className="size-7 rounded-md flex items-center justify-center text-slate hover:text-heading transition-colors"
+                    aria-label="Close Preview"
+                  >
+                    <X className="size-4" />
+                  </button>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <a
-                  href="/portfolio/resume.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                  download="Sourabh_Lathi_Resume.pdf"
-                  className="text-xs font-medium text-accent hover:text-heading flex items-center gap-1 px-2.5 py-1 rounded-md border border-accent/40 bg-navy transition-colors"
-                >
-                  <span>Download</span>
-                  <ExternalLink className="size-3" />
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setShowResume(false)}
-                  className="size-7 rounded-md flex items-center justify-center text-slate hover:text-heading transition-colors"
-                  aria-label="Close Preview"
-                >
-                  <X className="size-4" />
-                </button>
+              <div className="h-[80vh] w-full mt-3 rounded-xl overflow-hidden border border-lightest-navy bg-navy">
+                <iframe
+                  src="/portfolio/resume.pdf#toolbar=0"
+                  className="w-full h-full"
+                  title={`Resume - ${identity.name}`}
+                />
               </div>
             </div>
-            <div className="h-[80vh] w-full mt-3 rounded-xl overflow-hidden border border-lightest-navy bg-navy">
-              <iframe
-                src="/portfolio/resume.pdf#toolbar=0"
-                className="w-full h-full"
-                title={`Resume - ${identity.name}`}
-              />
-            </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
 
       {/* Social Media Pill Badges */}
       <div className="mt-7 flex flex-wrap items-center gap-2.5">
