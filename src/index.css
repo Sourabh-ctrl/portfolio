@@ -14,7 +14,7 @@
   --color-surface: var(--color-bg-surface);
   --color-surface-hover: var(--color-bg-surface-hover);
 
-  --font-serif: "Source Serif Pro", Georgia, serif;
+  --font-serif: "Outfit", "Segoe UI", sans-serif;
   --font-sans: "NTR", "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
@@ -68,17 +68,17 @@
 /* ─── Light theme ─── */
 .light {
   --color-bg-primary: #ffffff;
-  --color-bg-secondary: #ffffff;
+  --color-bg-secondary: #e2e8f0;
   --color-bg-surface: #f1f5f9;
   --color-bg-surface-hover: #e2e8f0;
   --color-border: #cbd5e1;
-  --color-text-heading: #000000;
-  --color-text-primary: #000000;
-  --color-text-secondary: #000000;
-  --color-text-muted: #000000;
-  --color-accent: #2563eb;
-  --color-accent-glow: rgba(37, 99, 235, 0.18);
-  --pattern-fg: rgba(37, 99, 235, 0.05);
+  --color-text-heading: #0f172a;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #334155;
+  --color-text-muted: #475569;
+  --color-accent: #1d4ed8;
+  --color-accent-glow: rgba(29, 78, 216, 0.18);
+  --pattern-fg: rgba(29, 78, 216, 0.05);
 }
 
 html {
@@ -101,7 +101,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'Source Serif Pro', Georgia, serif;
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
 }
 
 a {

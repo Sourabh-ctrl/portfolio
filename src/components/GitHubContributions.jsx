@@ -369,7 +369,7 @@ function GitHubContributions() {
               }}
             >
               <div>
-                <strong className="font-semibold text-white">
+                <strong>
                   {tooltip.count === 0
                     ? 'No contributions'
                     : tooltip.count === 1

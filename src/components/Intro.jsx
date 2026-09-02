@@ -133,10 +133,7 @@ function Intro() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
           {/* Avatar with live WakaTime presence indicator */}
           <div className="relative group shrink-0">
-            <a
-              href={data.wakatime?.profileUrl || `https://wakatime.com/@${data.wakatime?.username}`}
-              target="_blank"
-              rel="noreferrer noopener"
+            <div
               className="block size-24 sm:size-28 rounded-full overflow-hidden ring-2 ring-lightest-navy hover:ring-accent shadow-xl transition-all"
               aria-label="View WakaTime Profile"
             >
@@ -145,7 +142,7 @@ function Intro() {
                 alt={identity.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-            </a>
+            </div>
 
               {/* Presence Indicator */}
               <div className="absolute bottom-1 right-1 pointer-events-none">
@@ -185,16 +182,16 @@ function Intro() {
     <div className="flex items-center gap-2">
       {/* Blinking green dot for online status */}
       <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-      <span className="font-medium text-gray-900 dark:text-gray-100">
+      <span className="font-medium text-lightest-slate">
         Coding in {wakaStats.editor || 'VS Code'}
       </span>
-      <span className="text-gray-500 text-xs">
+      <span className="text-slate text-xs">
         {wakaStats.todayWorked || '0 mins'}
       </span>
     </div>
     
-    <div className="text-gray-600 dark:text-gray-400 pl-4 mt-0.5">
-      Working on <span className="font-medium text-gray-800 dark:text-gray-200">{wakaStats.project || 'portfolio'}</span>
+    <div className="text-light-slate pl-4 mt-0.5">
+      Working on <span className="font-medium text-heading">{wakaStats.project || 'portfolio'}</span>
     </div>
   </div>
 ) : (
@@ -202,15 +199,15 @@ function Intro() {
     <div className="flex items-center gap-2">
       {/* Gray dot for offline status */}
       <span className="h-2 w-2 rounded-full bg-gray-400" />
-      <span className="font-medium text-gray-900 dark:text-gray-100">
+      <span className="font-medium text-lightest-slate">
         Offline
       </span>
-      <span className="text-gray-500">
+      <span className="text-slate">
         in {wakaStats.editor || 'VS Code'}
       </span>
     </div>
     
-    <div className="text-gray-600 dark:text-gray-400 pl-4 mt-0.5 text-xs">
+    <div className="text-light-slate pl-4 mt-0.5 text-xs">
       Worked <span className="font-medium">{wakaStats.yesterdayWorked || '0 mins'}</span> yesterday
       {wakaStats.todayWorked && wakaStats.todayWorked !== '0 mins' && (
         <span> &middot; {wakaStats.todayWorked} today</span>
