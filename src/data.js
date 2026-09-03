@@ -6,15 +6,12 @@
 import logo from './assets/logo.jpeg'
 import project1 from './assets/project1.png'
 import project3 from './assets/project3.png'
-import smtpMailersLogo from './assets/smtp-mailers-logo.png'
-import iqpathsLogo from './assets/iqpaths-logo.png'
-import iqpathsLogoWhite from './assets/iqpaths-logo-white.png'
 
 const data = {
   identity: {
     name: 'Sourabh Lathi',
     firstName: 'Sourabh',
-    role: 'Full-Stack Developer & Software Engineer',
+    role: 'Full-Stack Developer',
     location: 'Indore, India',
     email: 'lathisaurav@gmail.com',
     isOpenToWork: true,
@@ -31,9 +28,9 @@ const data = {
 
     // Typewriter lines toggled on repeat by the Intro section.
     taglines: [
+      'Software Engineer',
       'Full-Stack Web Architect',
       'React & Node.js Engineer',
-      'Open Source Contributor',
     ],
   },
 
@@ -125,8 +122,6 @@ const data = {
       period: 'Feb 2025 – May 2025',
       location: 'Indore, India',
       mode: 'On-site',
-      logo: iqpathsLogo,
-      logoWhite: iqpathsLogoWhite,
       logoUrl: 'https://www.google.com/s2/favicons?domain=iqpaths.com&sz=32',
       url: 'https://www.iqpaths.com/',
 
@@ -149,7 +144,6 @@ const data = {
       period: 'Jun 2025 - July 2025',
       location: 'Indore, India',
       mode: 'On-site',
-      logo: smtpMailersLogo,
       logoUrl: 'https://www.google.com/s2/favicons?domain=smtpmailers.com&sz=32',
       url: 'https://smtpmailers.com/',
 

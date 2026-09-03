@@ -2,7 +2,7 @@ import { useState } from 'react'
 import data from '../data.js'
 import { sound } from '../utils/sound.js'
 import FadeInSection from './FadeInSection.jsx'
-import { MapPin } from 'lucide-react'
+import { MapPin, ChevronDown } from 'lucide-react'
 import techIcons from '../techIcons.jsx'
 
 function Experience() {
@@ -107,18 +107,11 @@ function Experience() {
                         <span className="text-[11.5px] text-slate tabular-nums whitespace-nowrap">
                           {job.period}
                         </span>
-                        <svg
+                        <ChevronDown
                           className={`h-3 w-3 text-slate transition-transform duration-200 ${
                             isExpanded ? 'rotate-180' : ''
                           }`}
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                        >
-                          <path d="M3 4.5 L6 7.5 L9 4.5" />
-                        </svg>
+                        />
                       </div>
                     </div>
 
