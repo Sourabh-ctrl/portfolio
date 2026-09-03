@@ -46,8 +46,7 @@ function Intro() {
   })
 
   useEffect(() => {
-    const base = import.meta.env.BASE_URL || '/'
-    const apiUrl = `${base.endsWith('/') ? base : base + '/'}api/wakatime/today`
+    const apiUrl = '/api/wakatime/today'
 
     const fetchWakaStats = async () => {
       try {
