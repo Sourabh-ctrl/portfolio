@@ -183,7 +183,7 @@ function AsciiPortrait({ onHoverStart, onHoverEnd }) {
         p.x += p.vx
         p.y += p.vy
 
-        const dotColor = isLight ? '71,85,105' : '100,255,218'
+        const dotColor = isLight ? '51,65,85' : '100,255,218'
         const drawAlpha = isLight ? Math.max(p.currentAlpha, 0.92) : p.currentAlpha
         ctx.fillStyle = `rgba(${dotColor}, ${drawAlpha})`
         ctx.fillText(p.char, p.x, p.y)
