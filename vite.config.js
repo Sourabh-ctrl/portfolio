@@ -105,7 +105,7 @@ function wakatimeDevApiPlugin() {
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/portfolio/',
+  base: process.env.VERCEL ? '/' : '/portfolio/',
   plugins: [react(), tailwindcss(), wakatimeDevApiPlugin()],
   server: {
     host: true,

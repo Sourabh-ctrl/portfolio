@@ -4,7 +4,6 @@ import { TypeAnimation } from 'react-type-animation'
 import data from '../data.js'
 import { sound } from '../utils/sound.js'
 import Magnetic from './Magnetic.jsx'
-import TerminalOverlay from './TerminalOverlay.jsx'
 import { FileText, Send, X, ExternalLink } from 'lucide-react'
 
 function GithubSvg() {
@@ -310,7 +309,6 @@ function Intro() {
           </a>
         </Magnetic>
 
-        <TerminalOverlay onOpenResume={() => setShowResume(true)} />
       </div>
 
       {/* Resume Modal */}
