@@ -46,7 +46,7 @@ function Intro() {
   })
 
   useEffect(() => {
-    const apiUrl = '/api/wakatime/today'
+    const apiUrl = '/api/wakatime'
 
     const fetchWakaStats = async () => {
       try {
