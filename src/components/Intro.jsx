@@ -140,10 +140,10 @@ function Intro() {
 
           {/* WakaTime Stats Popover */}
           <div
-            className={`absolute left-full top-1/2 -translate-y-1/2 ml-4 z-50 pointer-events-none transition-all duration-300 ease-out ${
+            className={`absolute z-50 pointer-events-none transition-all duration-300 ease-out sm:left-full sm:top-1/2 sm:-translate-y-1/2 sm:ml-4 left-1/2 -translate-x-1/2 sm:translate-x-0 top-full mt-3 sm:mt-0 ${
               asciiHovered
-                ? 'opacity-100 translate-x-0'
-                : 'opacity-0 -translate-x-2'
+                ? 'opacity-100 translate-y-0 sm:translate-x-0'
+                : 'opacity-0 translate-y-2 sm:translate-x-2 sm:-translate-x-0 sm:translate-y-0'
             }`}
             role="tooltip"
           >
@@ -154,9 +154,9 @@ function Intro() {
                   : 'border border-lightest-navy/80 bg-light-navy/95 text-lightest-slate shadow-xl'
               }`}
             >
-              {/* Arrow notch pointing left */}
+              {/* Arrow notch - left on desktop, top on mobile */}
               <div
-                className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1.5 h-3 w-3 rotate-45 border-b border-l bg-light-navy ${
+                className={`absolute sm:left-0 sm:top-1/2 sm:-translate-y-1/2 sm:-translate-x-1.5 left-1/2 top-0 -translate-x-1/2 -translate-y-1.5 rotate-45 h-3 w-3 sm:border-b sm:border-l sm:border-t-0 sm:border-r-0 border-t border-l bg-light-navy ${
                   wakaStats.isOnline ? 'border-emerald-500/40' : 'border-lightest-navy/80'
                 }`}
               />

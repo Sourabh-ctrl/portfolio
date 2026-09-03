@@ -356,6 +356,11 @@ a:hover {
   color: #6b7280;
 }
 
+/* Light mode: grey accent text in skills/about section */
+.light #skills .text-accent {
+  color: #6b7280;
+}
+
 /* Light mode: grey mode badge text (On-site / Remote) */
 .light .rounded-full.text-accent {
   color: #6b7280;
@@ -375,6 +380,16 @@ a:hover {
 
 .light a:hover,
 .light button:hover {
+  color: #6b7280;
+}
+
+/* Light mode: grey hover on social link icons */
+.light .group:hover > span {
+  color: #6b7280;
+}
+
+/* Light mode: grey hover on project titles */
+.light .group:hover h3 {
   color: #6b7280;
 }
 
