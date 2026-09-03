@@ -160,7 +160,7 @@ function Intro() {
           {/* Avatar with live WakaTime presence indicator */}
           <div className="relative group shrink-0">
             <div
-              className="block size-24 sm:size-28 rounded-full overflow-hidden ring-2 ring-lightest-navy hover:ring-accent shadow-xl transition-all"
+              className="block size-24 sm:size-28 rounded-full overflow-hidden ring-2 ring-lightest-navy hover:ring-accent shadow-xl transition-all duration-350"
               aria-label="View WakaTime Profile"
             >
               <img
@@ -285,27 +285,27 @@ function Intro() {
 
       {/* CTA Buttons */}
       <div className="mt-6 flex flex-wrap items-center gap-3">
-        <Magnetic>
-          <button
-            type="button"
-            ref={resumeTriggerRef}
-            onClick={() => {
-              sound.playClick()
-              setShowResume((v) => !v)
-            }}
-            className="inline-flex items-center gap-2 rounded-lg border border-accent/40 bg-light-navy hover:bg-lightest-navy/60 px-4 py-2 text-sm font-sans font-medium text-lightest-slate hover:text-accent shadow-sm transition-all active:scale-95 cursor-pointer"
-          >
+          <Magnetic>
+            <button
+              type="button"
+              ref={resumeTriggerRef}
+              onClick={() => {
+                sound.playClick()
+                setShowResume((v) => !v)
+              }}
+              className="inline-flex items-center gap-2 rounded-2xl border border-accent/40 bg-light-navy hover:bg-lightest-navy/60 px-4 py-2 text-sm font-sans font-medium text-lightest-slate hover:text-accent shadow-sm transition-all duration-350 active:scale-97 cursor-pointer"
+            >
             <FileText className="size-4 text-accent" />
             <span>{showResume ? 'Close Resume' : 'Resume / CV'}</span>
           </button>
         </Magnetic>
 
-        <Magnetic>
-          <a
-            href={`mailto:${identity.email}`}
-            onClick={() => sound.playClick()}
-            className="inline-flex items-center gap-2 rounded-lg border border-accent bg-accent/10 hover:bg-accent/20 text-accent px-5 py-2 text-sm font-sans font-semibold shadow-sm transition-all active:scale-95 cursor-pointer"
-          >
+          <Magnetic>
+            <a
+              href={`mailto:${identity.email}`}
+              onClick={() => sound.playClick()}
+              className="inline-flex items-center gap-2 rounded-2xl border border-accent bg-accent/10 hover:bg-accent/20 text-accent px-5 py-2 text-sm font-sans font-semibold shadow-sm transition-all duration-350 active:scale-97 cursor-pointer"
+            >
             <Send className="size-4" />
             <span>Say hi!</span>
           </a>
@@ -325,7 +325,7 @@ function Intro() {
           >
             <div
               ref={resumeDialogRef}
-              className="relative w-full max-w-3xl rounded-2xl border border-lightest-navy bg-light-navy/95 p-4 shadow-2xl overflow-hidden animate-open"
+              className="relative w-full max-w-3xl rounded-3xl border border-lightest-navy bg-light-navy/95 p-4 shadow-soft overflow-hidden animate-open"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between pb-3 border-b border-lightest-navy/60">
@@ -371,15 +371,15 @@ function Intro() {
         {socialLinks.map((s) => {
           const Icon = s.icon
           return (
-            <a
-              key={s.label}
-              href={s.href}
-              target={s.href.startsWith('mailto:') ? undefined : '_blank'}
-              rel="noreferrer noopener"
-              onClick={() => sound.playClick()}
-              aria-label={s.label}
-              className="group flex items-center gap-2 rounded-lg border border-lightest-navy/60 bg-light-navy/70 px-3 py-1.5 text-xs font-sans font-medium text-lightest-slate hover:bg-lightest-navy hover:text-accent hover:border-accent/50 transition-all shadow-xs active:scale-95"
-            >
+              <a
+                key={s.label}
+                href={s.href}
+                target={s.href.startsWith('mailto:') ? undefined : '_blank'}
+                rel="noreferrer noopener"
+                onClick={() => sound.playClick()}
+                aria-label={s.label}
+                className="group flex items-center gap-2 rounded-xl border border-lightest-navy/60 bg-light-navy/70 px-3 py-1.5 text-xs font-sans font-medium text-lightest-slate hover:bg-lightest-navy hover:text-accent hover:border-accent/50 transition-all duration-350 shadow-xs active:scale-97"
+              >
               <span className="text-slate group-hover:text-accent transition-colors">
                 <Icon />
               </span>

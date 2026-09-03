@@ -111,7 +111,7 @@ function useCountUp(target, active) {
 
 function CardShell({ children }) {
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-3xl border border-lightest-navy/70 bg-light-navy/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-2xl hover:shadow-black/40">
+    <div className="group relative flex flex-col overflow-hidden rounded-3xl border border-lightest-navy/70 bg-light-navy/50 backdrop-blur-sm transition-all duration-350 hover:-translate-y-1 hover:border-accent/40 hover:shadow-soft">
       {children}
     </div>
   )
@@ -273,7 +273,7 @@ function StatCards() {
                     {difficulty.map((d) => (
                       <div
                         key={d.label}
-                        className="transition-[width] duration-1000 ease-out"
+                        className="transition-[width] duration-1200 ease-out"
                         style={{
                           width: active ? `${(d.value / diffTotal) * 100}%` : '0%',
                           backgroundColor: d.color,
@@ -316,7 +316,7 @@ function StatCards() {
                     return (
                       <li
                         key={`${r.slug}-${i}`}
-                        className="flex items-center gap-2.5 rounded-lg border border-lightest-navy/50 bg-navy/40 px-3 py-2 transition-colors hover:border-accent/40"
+                        className="flex items-center gap-2.5 rounded-xl border border-lightest-navy/50 bg-navy/40 px-3 py-2.5 transition-colors duration-350 hover:border-accent/40"
                       >
                         {accepted ? (
                           <CheckCircle2 className="size-4 shrink-0 text-emerald-400" />

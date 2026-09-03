@@ -16,7 +16,7 @@ function AboutGroup({ category, items, visible, baseDelay }) {
             key={item}
             onClick={() => sound.playClick()}
             style={{ transitionDelay: visible ? `${baseDelay + i * 45}ms` : '0ms' }}
-            className={`group flex cursor-pointer items-center gap-2 rounded-md border border-dashed border-lightest-navy bg-light-navy/70 pl-2 pr-3 py-1.5 text-[12px] font-bold font-mono text-lightest-slate shadow-xs hover:text-accent transition-all ${
+            className={`group flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-lightest-navy bg-light-navy/70 pl-2.5 pr-3.5 py-2 text-[12px] font-bold font-mono text-lightest-slate shadow-xs hover:text-accent transition-all duration-350 ${
               visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
             }`}
           >
@@ -64,7 +64,7 @@ function About() {
             </div>
 
             {about.currentlyLearning?.length > 0 && (
-              <div className="mt-8 rounded-2xl border border-accent/30 bg-accent/5 p-4">
+              <div className="mt-8 rounded-3xl border border-accent/30 bg-accent/5 p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
@@ -82,7 +82,7 @@ function About() {
                       key={topic}
                       onClick={() => sound.playClick()}
                       style={{ transitionDelay: visible ? `${i * 45}ms` : '0ms' }}
-                      className={`inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-accent/40 bg-navy px-2.5 py-1 text-xs font-mono font-medium text-accent transition-all duration-500 ${
+                      className={`inline-flex cursor-pointer items-center gap-1.5 rounded-xl border border-accent/40 bg-navy px-3 py-1.5 text-xs font-mono font-medium text-accent transition-all duration-350 ${
                         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
                       }`}
                     >

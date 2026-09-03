@@ -53,9 +53,9 @@ function Experience() {
                   <div
                     data-sound="open"
                     onClick={() => toggleJob(idx)}
-                    className={`mb-2 w-full min-w-0 flex-1 cursor-pointer rounded-md px-3.5 py-3 transition-all duration-200 ${
+                    className={`mb-2 w-full min-w-0 flex-1 cursor-pointer rounded-xl px-4 py-3.5 transition-all duration-350 ${
                       isExpanded
-                        ? 'bg-light-navy/60 ring-1 ring-lightest-navy'
+                        ? 'bg-light-navy/60 ring-1 ring-lightest-navy shadow-soft'
                         : 'hover:bg-light-navy/40'
                     }`}
                   >
@@ -143,7 +143,7 @@ function Experience() {
 
                     {/* Expanded content */}
                     <div
-                      className={`w-full max-w-full overflow-hidden transition-all duration-300 ${
+                      className={`w-full max-w-full overflow-hidden transition-all duration-400 ease-in-out ${
                         isExpanded ? 'opacity-100' : 'max-h-0 opacity-0'
                       }`}
                     >
@@ -184,7 +184,7 @@ function Experience() {
                           {job.tech.map((tech) => (
                             <span
                               key={tech}
-                              className="flex items-center gap-1.5 rounded border border-lightest-navy/80 bg-navy px-2 py-1 text-[11px] font-medium text-light-slate"
+                              className="flex items-center gap-1.5 rounded-lg border border-lightest-navy/80 bg-navy px-2.5 py-1.5 text-[11px] font-medium text-light-slate"
                             >
                               {techIcons[tech] || (
                                 <span className="inline-block h-2 w-2 rounded-full bg-slate" />

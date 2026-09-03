@@ -70,9 +70,9 @@ function NavBar() {
     <>
       <header className="fixed inset-x-0 top-0 z-50 mx-auto flex w-full justify-center px-4 pt-3 pointer-events-none">
         <nav
-          className={`pointer-events-auto flex items-center justify-between w-full max-w-4xl rounded-2xl px-4 py-3 transition-all duration-300 backdrop-blur-md ${
+          className={`pointer-events-auto flex items-center justify-between w-full max-w-4xl rounded-3xl px-4 py-3 transition-all duration-350 backdrop-blur-md ${
             scrolled
-              ? 'bg-navy/90 border border-lightest-navy shadow-lg shadow-black/30'
+              ? 'bg-navy/90 border border-lightest-navy shadow-soft'
               : 'bg-navy/75 border border-lightest-navy/50'
           }`}
         >
@@ -115,7 +115,7 @@ function NavBar() {
                     href={item.href}
                     onClick={handleNavClick}
                     aria-current={isActive ? 'true' : undefined}
-                    className={`relative px-3.5 py-2 text-sm font-sans font-semibold tracking-wide rounded-lg transition-all hover:bg-light-navy/70 group ${
+                    className={`relative px-3.5 py-2 text-sm font-sans font-semibold tracking-wide rounded-xl transition-all duration-350 hover:bg-light-navy/70 group ${
                       isActive ? 'text-accent' : 'text-slate hover:text-accent'
                     }`}
                   >
@@ -182,7 +182,7 @@ function NavBar() {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 bg-navy/80 backdrop-blur-sm lg:hidden" onClick={() => setMobileMenuOpen(false)}>
           <div
-            className="absolute top-16 inset-x-4 max-w-sm mx-auto bg-light-navy border border-lightest-navy rounded-2xl p-4 shadow-2xl flex flex-col gap-1.5"
+            className="absolute top-16 inset-x-4 max-w-sm mx-auto bg-light-navy border border-lightest-navy rounded-3xl p-4 shadow-soft flex flex-col gap-1.5"
             onClick={(e) => e.stopPropagation()}
           >
             {navItems.map((item) => (
@@ -190,7 +190,7 @@ function NavBar() {
                 key={item.href}
                 href={item.href}
                 onClick={handleNavClick}
-                className={`px-4 py-3 text-base font-sans font-semibold rounded-xl transition-colors ${
+                className={`px-4 py-3 text-base font-sans font-semibold rounded-2xl transition-colors duration-350 ${
                   activeId === item.href
                     ? 'text-accent bg-lightest-navy/40'
                     : 'text-lightest-slate hover:text-accent hover:bg-lightest-navy/50'

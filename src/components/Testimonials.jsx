@@ -28,7 +28,7 @@ function Testimonials() {
             onMouseLeave={() => setHoveredName(null)}
             onFocus={() => setHoveredName(t.name)}
             onBlur={() => setHoveredName(null)}
-            className="group flex w-[280px] sm:w-[340px] shrink-0 flex-col rounded-2xl border border-lightest-navy/60 bg-light-navy/60 p-5 transition-all duration-300 hover:border-accent/60 hover:shadow-xl"
+            className="group flex w-[280px] sm:w-[340px] shrink-0 flex-col rounded-3xl border border-lightest-navy/60 bg-light-navy/60 p-5 transition-all duration-350 hover:border-accent/60 hover:shadow-soft"
           >
               <div className="flex items-start gap-2.5">
                 <span className="font-serif text-4xl leading-none text-accent select-none" aria-hidden="true">
@@ -44,7 +44,7 @@ function Testimonials() {
                   src={t.avatarUrl}
                   alt={t.name}
                   loading="lazy"
-                  className="size-11 rounded-full object-cover ring-2 ring-lightest-navy group-hover:ring-accent/70 transition-all"
+                  className="size-11 rounded-full object-cover ring-2 ring-lightest-navy group-hover:ring-accent/70 transition-all duration-350"
                 />
                 <p className="min-w-0 text-sm font-semibold text-heading truncate">{t.name}</p>
               </div>

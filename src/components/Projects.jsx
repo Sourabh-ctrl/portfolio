@@ -34,11 +34,11 @@ function Projects() {
                 <article
                   key={project.name}
                   style={{ transitionDelay: visible ? `${i * 120}ms` : '0ms' }}
-                  className={`group relative flex flex-col rounded-2xl border border-lightest-navy/60 bg-light-navy/60 p-5 transition-all duration-500 hover:border-accent/60 hover:shadow-xl backdrop-blur-xs ${
+                  className={`group relative flex flex-col rounded-3xl border border-lightest-navy/60 bg-light-navy/60 p-5 transition-all duration-350 hover:border-accent/60 hover:shadow-soft backdrop-blur-xs ${
                     visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}
                 >
-                  <div className="relative aspect-16/9 w-full overflow-hidden rounded-xl bg-navy border border-lightest-navy/50">
+                  <div className="relative aspect-16/9 w-full overflow-hidden rounded-2xl bg-navy border border-lightest-navy/50">
                     <img
                       src={project.image}
                       alt={project.name}
@@ -89,7 +89,7 @@ function Projects() {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="tech-tag flex items-center gap-1.5 rounded-md bg-accent/10 text-accent px-2 py-1 text-xs font-mono font-medium border border-accent/20"
+                        className="tech-tag flex items-center gap-1.5 rounded-xl bg-accent/10 text-accent px-2.5 py-1.5 text-xs font-mono font-medium border border-accent/20"
                       >
                         {techIcons[t] || (
                           <span className="inline-block h-2 w-2 rounded-full bg-slate" />

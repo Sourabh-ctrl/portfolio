@@ -11,7 +11,7 @@ function Footer() {
     <footer className="pt-8 pb-16" id="contact">
       <FadeInSection>
         {/* Contact CTA Card */}
-        <div className="rounded-2xl border border-lightest-navy/60 bg-linear-to-b from-light-navy/80 to-navy p-8 sm:p-10 text-center shadow-xl">
+        <div className="rounded-3xl border border-lightest-navy/60 bg-linear-to-b from-light-navy/80 to-navy p-8 sm:p-10 text-center shadow-soft">
           <div className="mx-auto size-12 rounded-2xl bg-navy border border-lightest-navy flex items-center justify-center text-accent mb-4 shadow-sm">
             <Mail className="size-6" />
           </div>
@@ -37,7 +37,7 @@ function Footer() {
             <a
               href={`mailto:${identity.email}`}
               onClick={() => sound.playClick()}
-              className="inline-flex items-center gap-2 rounded-xl border border-accent bg-accent/10 hover:bg-accent/20 text-accent px-6 py-3 text-sm font-sans font-semibold shadow-md transition-all active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-2xl border border-accent bg-accent/10 hover:bg-accent/20 text-accent px-6 py-3 text-sm font-sans font-semibold shadow-md transition-all duration-350 active:scale-97 cursor-pointer"
             >
               <span>Say hi!</span>
               <ArrowUpRight className="size-4" />
