@@ -23,11 +23,13 @@ const techIcons = {
   JavaScript: (
     <svg viewBox="0 0 24 24" fill="#F7DF1E" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.405-.6-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65z" />
+      <path d="M9.2 13.5c0 1.1.6 1.8 1.5 1.8.9 0 1.5-.7 1.5-1.8V8.6H13v4.9c0 1.6-1 2.5-2.4 2.5s-2.4-.9-2.4-2.5V8.6H7v4.9z" />
     </svg>
   ),
   'JavaScript (ES6+)': (
     <svg viewBox="0 0 24 24" fill="#F7DF1E" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.405-.6-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65z" />
+      <path d="M9.2 13.5c0 1.1.6 1.8 1.5 1.8.9 0 1.5-.7 1.5-1.8V8.6H13v4.9c0 1.6-1 2.5-2.4 2.5s-2.4-.9-2.4-2.5V8.6H7v4.9z" />
     </svg>
   ),
   'Node.js': (
@@ -49,6 +51,11 @@ const techIcons = {
   'Next.js': (
     <svg viewBox="0 0 24 24" fill="currentColor" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 14.5h-9v-1h9v1zm0-3h-9v-1h9v1zm0-3h-9v-1h9v1zm0-3h-9v-1h9v1z" />
+    </svg>
+  ),
+  WebSocket: (
+    <svg viewBox="0 0 24 24" fill="currentColor" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z" />
     </svg>
   ),
   'Tailwind CSS': (
@@ -83,7 +90,7 @@ const techIcons = {
   ),
   MySQL: (
     <svg viewBox="0 0 24 24" fill="#4479A1" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z" />
+      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm5.5 14c-.5 1.5-1.5 2.5-3 3v-3h1.5c1 0 1.5-.5 1.5-1.5V12c0-1-.5-1.5-1.5-1.5H9v-1.5c0-.5.5-1 1-1h4.5c.5 0 1 .5 1 1v3h-1.5c-1 0-1.5.5-1.5 1.5v2c0 1 .5 1.5 1.5 1.5H15v3c1.5-.5 2.5-1.5 3-3h-1.5c-.5 0-1-.5-1-1v-2c0-.5.5-1 1-1h2c.5 0 1 .5 1 1v2c0 .5-.5 1-1 1H17.5zM9 17.5c-1 0-1.5-.5-1.5-1.5v-2c0-1 .5-1.5 1.5-1.5h2c1 0 1.5.5 1.5 1.5v2c0 1-.5 1.5-1.5 1.5H9zm0-5c-1 0-1.5-.5-1.5-1.5v-2c0-1 .5-1.5 1.5-1.5h2c1 0 1.5.5 1.5 1.5v2c0 1-.5 1.5-1.5 1.5H9z" />
     </svg>
   ),
   Docker: (
@@ -102,38 +109,38 @@ const techIcons = {
     </svg>
   ),
   'REST APIs': (
-    <svg viewBox="0 0 24 24" fill="none" stroke="#009688" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path d="M4 7h3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4" />
       <path d="M20 7h-3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3" />
       <line x1="9" y1="12" x2="15" y2="12" />
     </svg>
   ),
   Axios: (
-    <svg viewBox="0 0 24 24" fill="#5A29E4" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="currentColor" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
     </svg>
   ),
   'Socket.io': (
-    <svg viewBox="0 0 24 24" fill="#010101" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="currentColor" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <circle cx="12" cy="12" r="3" />
       <circle cx="4" cy="8" r="2" />
       <circle cx="20" cy="8" r="2" />
       <circle cx="4" cy="16" r="2" />
       <circle cx="20" cy="16" r="2" />
-      <line x1="6" y1="8" x2="10" y2="11" stroke="#010101" strokeWidth="1.5" />
-      <line x1="18" y1="8" x2="14" y2="11" stroke="#010101" strokeWidth="1.5" />
-      <line x1="6" y1="16" x2="10" y2="13" stroke="#010101" strokeWidth="1.5" />
-      <line x1="18" y1="16" x2="14" y2="13" stroke="#010101" strokeWidth="1.5" />
+      <line x1="6" y1="8" x2="10" y2="11" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="18" y1="8" x2="14" y2="11" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="6" y1="16" x2="10" y2="13" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="18" y1="16" x2="14" y2="13" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   ),
   JWT: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
       <path d="M7 11V7a5 5 0 0 1 10 0v4" />
     </svg>
   ),
   'JWT Authentication': (
-    <svg viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
       <path d="M7 11V7a5 5 0 0 1 10 0v4" />
     </svg>
@@ -144,33 +151,33 @@ const techIcons = {
     </svg>
   ),
   Multer: (
-    <svg viewBox="0 0 24 24" fill="#E535AB" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="currentColor" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z" />
     </svg>
   ),
   Razorpay: (
-    <svg viewBox="0 0 24 24" fill="#072654" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="currentColor" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
     </svg>
   ),
   'Razorpay API': (
-    <svg viewBox="0 0 24 24" fill="#072654" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="currentColor" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
     </svg>
   ),
   Postman: (
-    <svg viewBox="0 0 24 24" fill="#FF6C37" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="currentColor" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
     </svg>
   ),
   bcryptjs: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
       <path d="M7 11V7a5 5 0 0 1 10 0v4" />
     </svg>
   ),
   'React Router': (
-    <svg viewBox="0 0 24 24" fill="none" stroke="#CA4245" strokeWidth="2" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <circle cx="12" cy="12" r="3" />
       <circle cx="19" cy="5" r="2" />
       <circle cx="5" cy="5" r="2" />
@@ -180,15 +187,15 @@ const techIcons = {
   ),
   'Context API': (
     <svg viewBox="0 0 24 24" fill="none" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="2.05" fill="#61DAFB" />
-      <ellipse cx="12" cy="12" rx="10" ry="4.28" stroke="#61DAFB" strokeWidth="1" />
-      <ellipse cx="12" cy="12" rx="10" ry="4.28" stroke="#61DAFB" strokeWidth="1" transform="rotate(60 12 12)" />
-      <ellipse cx="12" cy="12" rx="10" ry="4.28" stroke="#61DAFB" strokeWidth="1" transform="rotate(120 12 12)" />
+      <circle cx="12" cy="12" r="2.05" fill="currentColor" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.28" stroke="currentColor" strokeWidth="1" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.28" stroke="currentColor" strokeWidth="1" transform="rotate(60 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.28" stroke="currentColor" strokeWidth="1" transform="rotate(120 12 12)" />
     </svg>
   ),
   C: (
     <svg viewBox="0 0 24 24" fill="#A8B9CC" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18.09 7.645c-1.128-1.59-2.832-2.527-4.727-2.675l-.006.003c-.12-.013-.24-.02-.363-.02-.682 0-1.33.16-1.903.448l.212-.52c.835-.208 1.72-.167 2.527.12l-.003.001c1.322.473 2.316 1.576 2.773 2.94l.003.009c.25.754.276 1.56.075 2.324l.498.182c.267-1.013.233-2.076-.086-3.072l-.003-.012-.003-.007zm-2.58 7.933c-1.343.766-2.75 1.23-4.195 1.382l.01-.003c-.135.014-.27.022-.407.022-.878 0-1.713-.21-2.436-.577l.225.514c1.06.412 2.27.54 3.485.36l-.014.002c1.688-.25 3.19-1.1 4.287-2.348l.006-.007c.642-.736 1.078-1.62 1.277-2.568l.5.133c-.228 1.097-.746 2.11-1.503 2.97l-.004.004-.005.005c-.218.247-.456.476-.71.688l-.006.006-.005.005z" />
+      <path d="M18.8 3H15l-6.3 18h3.8l1.3-4.2h5.1L19.8 21H24L18.8 3zm-3.5 12.3L15.8 11l.5-1.7h.1l.5 1.7 1.4 4.3h-2.9zM6.8 3H2l5.5 16.2L7.7 15 6.8 3z" />
     </svg>
   ),
   'C++': (
@@ -204,6 +211,47 @@ const techIcons = {
   CSS3: (
     <svg viewBox="0 0 24 24" fill="#1572B6" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path d="M1.5 0h21l-1.91 21.563L11.997 24l-8.59-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.955-.81-.188-2.11h-2.6l.29 3.855L12 19.002l5.354-1.12.755-8.468z" />
+    </svg>
+  ),
+  Kafka: (
+    <svg viewBox="0 0 24 24" fill="#231F20" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.564 11.314l-2.246 1.357v2.52l2.246-1.357v-2.52zm-2.246 4.094v2.52l2.246 1.357v-2.52l-2.246-1.357zm.758-6.521l2.246 1.357 2.246-1.357-2.246-1.357-2.246 1.357zm3.752 1.357l2.246 1.357v2.52l-2.246-1.357v-2.52zm0 5.45l-2.246 1.357v2.52l2.246-1.357v-2.52zm1.506-8.807l2.246 1.357 2.246-1.357-2.246-1.357-2.246 1.357zm3.752 1.357l2.246 1.357v2.52l-2.246-1.357v-2.52zm0 5.45l-2.246 1.357v2.52l2.246-1.357v-2.52zm1.506-8.807l2.246 1.357 2.246-1.357-2.246-1.357-2.246 1.357zm3.752 1.357v2.52l2.246 1.357v-2.52l-2.246-1.357zm0 3.893l2.246 1.357v2.52l-2.246-1.357v-2.52zm0 3.893l2.246 1.357v2.52l-2.246-1.357v-2.52z" />
+    </svg>
+  ),
+  Kubernetes: (
+    <svg viewBox="0 0 24 24" fill="#326CE5" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 1.5l-9 5.25v10.5l9 5.25 9-5.25V6.75l-9-5.25zm0 1.688l6.844 4v8l-6.844 4-6.844-4v-8l6.844-4zm-1.5 3.031l-4.5 2.625v5.25l4.5 2.625 4.5-2.625v-5.25l-4.5-2.625zm0 1.688l2.625 1.5v3l-2.625 1.5-2.625-1.5v-3l2.625-1.5z" />
+    </svg>
+  ),
+  'System Design': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#64ffda" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+      <line x1="10" y1="6.5" x2="14" y2="6.5" />
+      <line x1="10" y1="17.5" x2="14" y2="17.5" />
+      <line x1="6.5" y1="10" x2="6.5" y2="14" />
+      <line x1="17.5" y1="10" x2="17.5" y2="14" />
+    </svg>
+  ),
+  'Message Queues': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="6" width="5" height="4" rx="1" />
+      <rect x="9.5" y="6" width="5" height="4" rx="1" />
+      <rect x="17" y="6" width="5" height="4" rx="1" />
+      <rect x="5.75" y="14" width="5" height="4" rx="1" />
+      <rect x="13.25" y="14" width="5" height="4" rx="1" />
+      <line x1="7" y1="10" x2="7" y2="12" />
+      <line x1="12" y1="10" x2="12" y2="12" />
+      <line x1="17" y1="10" x2="17" y2="12" />
+      <polyline points="7 12 7 14 8.25 14" />
+      <polyline points="12 12 12 14 14.5 14" />
+    </svg>
+  ),
+  WebSocket: (
+    <svg viewBox="0 0 24 24" fill="currentColor" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z" />
     </svg>
   ),
 }

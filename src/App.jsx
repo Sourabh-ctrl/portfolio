@@ -15,7 +15,7 @@ function App() {
       <CursorGlow />
       <NavBar />
 
-      <div className="relative z-10 mx-auto w-full max-w-4xl bg-navy/95 shadow-boxing min-h-screen px-4 sm:px-8 md:px-12 border-x border-lightest-navy/40">
+      <div className="relative z-10 mx-auto w-full max-w-4xl bg-navy/95 shadow-boxing min-h-screen px-5 sm:px-8 lg:px-12 border-x border-lightest-navy/40">
         <main>
           <Intro />
           <GitHubContributions />

@@ -37,7 +37,7 @@ function About() {
   const { about } = data
 
   return (
-    <section className="pt-16 pb-12 scroll-mt-20" id="skills">
+    <section className="pt-12 pb-10 scroll-mt-20" id="skills">
       <FadeInSection>
         {({ visible }) => (
           <>

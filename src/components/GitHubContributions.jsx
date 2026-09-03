@@ -202,12 +202,12 @@ function GitHubContributions() {
 
   return (
     <section
-      className="pt-16 pb-12 scroll-mt-20"
+      className="pt-12 pb-10 scroll-mt-20"
       id="activity"
     >
       <FadeInSection>
         {/* Section Heading matching visheshxdevs header style */}
-        <div className="mb-4">
+        <div className="mb-6">
           <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">
             <span className="text-accent font-sans mr-0.5">/</span>
             <span>GitHub Activity</span>

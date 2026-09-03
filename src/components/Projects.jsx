@@ -15,7 +15,7 @@ function GitHubIcon({ className = 'size-3.5' }) {
 function Projects() {
   const { projects } = data
   return (
-    <section className="pt-16 pb-12 scroll-mt-20" id="projects">
+    <section className="pt-12 pb-10 scroll-mt-20" id="projects">
       <FadeInSection>
         {({ visible }) => (
           <>
@@ -34,7 +34,7 @@ function Projects() {
                 <article
                   key={project.name}
                   style={{ transitionDelay: visible ? `${i * 120}ms` : '0ms' }}
-                  className={`group relative flex flex-col rounded-2xl border border-lightest-navy/60 bg-light-navy/60 p-4 transition-all duration-500 hover:border-accent/60 hover:shadow-xl backdrop-blur-xs ${
+                  className={`group relative flex flex-col rounded-2xl border border-lightest-navy/60 bg-light-navy/60 p-5 transition-all duration-500 hover:border-accent/60 hover:shadow-xl backdrop-blur-xs ${
                     visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}
                 >

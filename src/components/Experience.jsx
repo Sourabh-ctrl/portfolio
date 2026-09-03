@@ -15,14 +15,19 @@ function Experience() {
   }
 
   return (
-    <section className="pt-16 pb-12 scroll-mt-20" id="experience">
+    <section className="pt-12 pb-10 scroll-mt-20" id="experience">
       <FadeInSection>
-        <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">
-          <span className="text-accent font-sans mr-0.5">/</span>
-          <span>Experience</span>
-        </h2>
+        <div className="mb-6">
+          <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">
+            <span className="text-accent font-sans mr-0.5">/</span>
+            <span>Experience</span>
+          </h2>
+          <p className="text-sm font-sans text-slate mt-1">
+            Roles and teams I've worked with
+          </p>
+        </div>
 
-        <div className="mt-4">
+        <div>
           {jobs.map((job, idx) => {
             const isExpanded = expandedIndex === idx
             const isLast = idx === jobs.length - 1

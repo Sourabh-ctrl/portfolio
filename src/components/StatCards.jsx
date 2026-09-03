@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import data from '../data.js'
 import FadeInSection from './FadeInSection.jsx'
 import {
-  Star,
-  GitFork,
-  FolderGit2,
-  Users,
   Code2,
   TrendingUp,
   Trophy,
@@ -14,36 +9,7 @@ import {
 } from 'lucide-react'
 
 const LEETCODE_USERNAME = 'sourabhlathi'
-const GH_CACHE_TTL = 60 * 60 * 1000
 const RELATIVE_TICK = 30000
-
-function readCache(key, ttlMs) {
-  try {
-    const raw = localStorage.getItem(key)
-    if (!raw) return null
-    const parsed = JSON.parse(raw)
-    if (Date.now() - parsed.timestamp > ttlMs) return null
-    return parsed.data
-  } catch {
-    return null
-  }
-}
-
-function writeCache(key, dataValue) {
-  try {
-    localStorage.setItem(key, JSON.stringify({ data: dataValue, timestamp: Date.now() }))
-  } catch {
-    // ignore
-  }
-}
-
-function GithubMark({ className = 'size-4' }) {
-  return (
-    <svg className={className} viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
-    </svg>
-  )
-}
 
 function LeetCodeMark({ className = 'size-4' }) {
   return (
@@ -64,22 +30,6 @@ function relativeTime(timestamp, now) {
   const h = Math.floor(m / 60)
   if (h < 24) return `${h} hr ago`
   return `${Math.floor(h / 24)} day ago`
-}
-
-async function fetchGitHub() {
-  const profileUrl = `https://api.github.com/users/${data.github.username}`
-  const reposUrl = `https://api.github.com/users/${data.github.username}/repos?per_page=100&sort=updated`
-  const [profileRes, reposRes] = await Promise.all([fetch(profileUrl), fetch(reposUrl)])
-  if (!profileRes.ok || !reposRes.ok) throw new Error('gh failed')
-  const [profile, repos] = await Promise.all([profileRes.json(), reposRes.json()])
-  const stars = repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0)
-  const forks = repos.reduce((sum, r) => sum + (r.forks_count || 0), 0)
-  return {
-    repos: repos.length,
-    stars,
-    forks,
-    followers: profile.followers ?? 0,
-  }
 }
 
 async function fetchLeetCodeJson(url) {
@@ -199,47 +149,16 @@ function CardHeader({ mark, title, sub, live }) {
   )
 }
 
-function StatBox({ icon, label, value, loading, active }) {
-  const Icon = icon
-  const shown = useCountUp(active && !loading ? value : 0, active && !loading)
-  return (
-    <div className="flex flex-col items-center justify-center gap-1 rounded-xl border border-lightest-navy/60 bg-navy/40 px-3 py-5 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/50 hover:bg-light-navy/40">
-      <Icon className="size-4 text-accent" />
-      <div className="text-xl font-serif font-bold tabular-nums text-heading sm:text-2xl">
-        {loading ? <span className="animate-pulse">…</span> : shown.toLocaleString()}
-      </div>
-      <div className="text-[10px] font-mono uppercase tracking-wider text-slate">{label}</div>
-    </div>
-  )
-}
-
 function Loading({ className = '' }) {
   return <div className={`animate-pulse bg-light-navy/50 ${className}`} />
 }
 
 function StatCards() {
-  const [gh, setGh] = useState(() => readCache('stat_gh', GH_CACHE_TTL))
   const [lc, setLc] = useState(null)
-  const [ghLoading, setGhLoading] = useState(true)
   const [lcLoading, setLcLoading] = useState(true)
   const [inView, setInView] = useState(false)
   const [now, setNow] = useState(0)
   const wrapRef = useRef(null)
-
-  useEffect(() => {
-    let alive = true
-    fetchGitHub()
-      .then((d) => {
-        if (!alive) return
-        setGh(d)
-        writeCache('stat_gh', d)
-      })
-      .catch(() => {})
-      .finally(() => alive && setGhLoading(false))
-    return () => {
-      alive = false
-    }
-  }, [])
 
   useEffect(() => {
     let alive = true
@@ -297,7 +216,7 @@ function StatCards() {
   const todayRecents = (lc?.recents || []).filter((r) => r.time >= todayStart.getTime())
 
   return (
-    <section className="pt-16 pb-12 scroll-mt-20" id="stats">
+    <section className="pt-12 pb-10 scroll-mt-20" id="stats">
       <FadeInSection>
         <div className="mb-6">
           <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">
@@ -305,28 +224,11 @@ function StatCards() {
             <span>By the Numbers</span>
           </h2>
           <p className="text-sm font-sans text-slate mt-1">
-            Live proof of shipping — GitHub and LeetCode, updated in real time
+            Live proof of shipping — updated in real time
           </p>
         </div>
 
-        <div ref={wrapRef} className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-          {/* GitHub card */}
-          <CardShell>
-            <CardHeader
-              mark={<GithubMark className="size-5" />}
-              title="GitHub"
-              sub={{ label: `@${data.github.username}`, href: data.github.profileUrl }}
-            />
-            <div className="flex-1 p-5">
-              <div className="grid grid-cols-2 gap-3">
-                <StatBox icon={FolderGit2} label="Repos" value={gh?.repos ?? 0} loading={ghLoading} active={active} />
-                <StatBox icon={Star} label="Stars" value={gh?.stars ?? 0} loading={ghLoading} active={active} />
-                <StatBox icon={GitFork} label="Forks" value={gh?.forks ?? 0} loading={ghLoading} active={active} />
-                <StatBox icon={Users} label="Followers" value={gh?.followers ?? 0} loading={ghLoading} active={active} />
-              </div>
-            </div>
-          </CardShell>
-
+        <div ref={wrapRef} className="grid grid-cols-1 gap-5">
           {/* LeetCode card */}
           <CardShell>
             <CardHeader

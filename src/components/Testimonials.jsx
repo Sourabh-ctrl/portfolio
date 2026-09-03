@@ -8,7 +8,7 @@ function Testimonials() {
   const [hoveredName, setHoveredName] = useState(null)
 
   return (
-    <section id="testimonials" className="pt-16 pb-12 scroll-mt-20">
+    <section id="testimonials" className="pt-12 pb-10 scroll-mt-20">
       <FadeInSection>
         <div className="mb-6">
           <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">
@@ -28,7 +28,7 @@ function Testimonials() {
             onMouseLeave={() => setHoveredName(null)}
             onFocus={() => setHoveredName(t.name)}
             onBlur={() => setHoveredName(null)}
-            className="group flex w-[280px] sm:w-[340px] shrink-0 flex-col rounded-2xl border border-lightest-navy/60 bg-light-navy/60 p-6 transition-all duration-300 hover:border-accent/60 hover:shadow-xl"
+            className="group flex w-[280px] sm:w-[340px] shrink-0 flex-col rounded-2xl border border-lightest-navy/60 bg-light-navy/60 p-5 transition-all duration-300 hover:border-accent/60 hover:shadow-xl"
           >
               <div className="flex items-start gap-2.5">
                 <span className="font-serif text-4xl leading-none text-accent select-none" aria-hidden="true">
