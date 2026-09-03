@@ -13,51 +13,36 @@ export default async function handler(req, res) {
   }
 
   try {
-    const auth = Buffer.from(apiKey).toString('base64')
+    const auth = btoa(apiKey)
     const headers = { Authorization: `Basic ${auth}` }
 
     const now = new Date()
     const todayStr = now.toISOString().split('T')[0]
-    const yest = new Date(now.getTime() - 24 * 60 * 60 * 1000)
-    const yestStr = yest.toISOString().split('T')[0]
+    const yestStr = new Date(now.getTime() - 86400000).toISOString().split('T')[0]
 
     const [sbRes, userRes, summariesRes] = await Promise.all([
       fetch('https://wakatime.com/api/v1/users/current/statusbar/today', { headers }),
       fetch('https://wakatime.com/api/v1/users/current', { headers }).catch(() => null),
-      fetch(
-        `https://wakatime.com/api/v1/users/current/summaries?start=${yestStr}&end=${todayStr}`,
-        { headers },
-      ).catch(() => null),
+      fetch(`https://wakatime.com/api/v1/users/current/summaries?start=${yestStr}&end=${todayStr}`, { headers }).catch(() => null),
     ])
 
     const data = await sbRes.json()
-    const userData = userRes && userRes.ok ? await userRes.json() : null
-    const summariesData = summariesRes && summariesRes.ok ? await summariesRes.json() : null
+    const userData = userRes?.ok ? await userRes.json() : null
+    const summariesData = summariesRes?.ok ? await summariesRes.json() : null
 
     const grandTotal = data?.data?.grand_total
     const projects = data?.data?.projects || []
     const editors = data?.data?.editors || []
 
-    const yestDay = summariesData?.data?.find((d) => d.range?.date === yestStr)
-    const todayDay = summariesData?.data?.find((d) => d.range?.date === todayStr)
-
+    const yestDay = summariesData?.data?.find(d => d.range?.date === yestStr)
     const yesterdayWorked = yestDay?.grand_total?.text || '0 mins'
-    const todayWorked = grandTotal?.text || todayDay?.grand_total?.text || '0 mins'
+    const todayWorked = grandTotal?.text || '0 mins'
 
     const lastHeartbeat = userData?.data?.last_heartbeat_at
     const timeoutMin = userData?.data?.timeout || 15
-    let isOnline = false
-    if (lastHeartbeat) {
-      const diffMinutes = (Date.now() - new Date(lastHeartbeat).getTime()) / (60 * 1000)
-      isOnline = diffMinutes <= timeoutMin
-    }
-
-    const activeProject = userData?.data?.last_project || projects[0]?.name || 'portfolio'
-    const activeEditor =
-      userData?.data?.last_plugin_name ||
-      editors.find((e) => e.name === 'VS Code')?.name ||
-      editors[0]?.name ||
-      'VS Code'
+    const isOnline = lastHeartbeat
+      ? (Date.now() - new Date(lastHeartbeat).getTime()) / 60000 <= timeoutMin
+      : false
 
     return res.status(200).json({
       text: todayWorked,
@@ -65,8 +50,8 @@ export default async function handler(req, res) {
       yesterdayWorked,
       digital: grandTotal?.digital || '0:00',
       seconds: grandTotal?.total_seconds || 0,
-      editor: activeEditor,
-      project: activeProject,
+      editor: userData?.data?.last_plugin_name || editors[0]?.name || 'VS Code',
+      project: userData?.data?.last_project || projects[0]?.name || 'portfolio',
       isOnline,
       lastHeartbeat,
     })

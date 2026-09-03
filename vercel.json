@@ -1,8 +1,9 @@
 {
-  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }],
-  "functions": {
-    "api/wakatime.js": {
-      "maxDuration": 10
-    }
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": [
+      { "source": "/(.*)", "destination": "/index.html" }
+    ]
   }
 }
