@@ -51,7 +51,6 @@ function Intro() {
     const fetchWakaStats = async () => {
       try {
         const res = await fetch(apiUrl)
-        if (!res.ok) return
         const json = await res.json()
         if (json && !json.error) {
           const stats = {
@@ -65,7 +64,7 @@ function Intro() {
           localStorage.setItem('wakatime_stats', JSON.stringify(stats))
         }
       } catch {
-        // Offline or proxy not available
+        // API not available, keep cached/default values
       }
     }
 
