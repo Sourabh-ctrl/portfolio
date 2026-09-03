@@ -6,6 +6,8 @@ import { sound } from '../utils/sound.js'
 import Magnetic from './Magnetic.jsx'
 import { FileText, Send, X, ExternalLink } from 'lucide-react'
 
+const baseUrl = import.meta.env.BASE_URL
+
 function GithubSvg() {
   return (
     <svg className="size-4" viewBox="0 0 16 16" fill="currentColor">
@@ -333,7 +335,7 @@ function Intro() {
                 </div>
                 <div className="flex items-center gap-2">
                   <a
-                    href="/portfolio/resume.pdf"
+                    href={`${baseUrl}resume.pdf`}
                     target="_blank"
                     rel="noreferrer"
                     download="Sourabh_Lathi_Resume.pdf"
@@ -354,7 +356,7 @@ function Intro() {
               </div>
               <div className="h-[80vh] w-full mt-3 rounded-xl overflow-hidden border border-lightest-navy bg-navy">
                 <iframe
-                  src="/portfolio/resume.pdf#toolbar=0"
+                  src={`${baseUrl}resume.pdf#toolbar=0`}
                   className="w-full h-full"
                   title={`Resume - ${identity.name}`}
                 />
