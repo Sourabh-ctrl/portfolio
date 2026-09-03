@@ -10,7 +10,7 @@ function wakatimeDevPlugin() {
     name: 'wakatime-dev-api',
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
-        if (!req.url?.includes('/api/wakatime/today')) return next()
+        if (!req.url?.includes('/api/wakatime')) return next()
 
         const env = loadEnv('development', process.cwd(), '')
         const apiKey = env.WAKATIME_API_KEY || ''
