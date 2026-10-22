@@ -1,32 +1,30 @@
-import Intro from './components/Intro.jsx'
-import About from './components/About.jsx'
+import Hero from './components/Hero.jsx'
+import Work from './components/Work.jsx'
 import Experience from './components/Experience.jsx'
-import Projects from './components/Projects.jsx'
-import GitHubContributions from './components/GitHubContributions.jsx'
-import StatCards from './components/StatCards.jsx'
+import Activity from './components/Activity.jsx'
+import Skills from './components/Skills.jsx'
+import About from './components/About.jsx'
 import Testimonials from './components/Testimonials.jsx'
-import Footer from './components/Footer.jsx'
+import Contact from './components/Contact.jsx'
 import NavBar from './components/NavBar.jsx'
-import CursorGlow from './components/CursorGlow.jsx'
+import CursorComment from './components/CursorComment.jsx'
 
 function App() {
   return (
-    <div className="relative min-h-screen bg-navy text-lightest-slate site-bg-pattern font-sans antialiased selection:bg-accent selection:text-navy">
-      <CursorGlow />
+    <div className="relative min-h-screen bg-background font-sans antialiased">
+      <CursorComment />
       <NavBar />
 
-      <div className="relative z-10 mx-auto w-full max-w-4xl bg-navy/95 shadow-boxing min-h-screen px-5 sm:px-8 lg:px-12 border-x border-lightest-navy/40">
-        <main>
-          <Intro />
-          <GitHubContributions />
-          <StatCards />
-          <Experience />
-          <Projects />
-          <About />
-          <Testimonials />
-        </main>
-        <Footer />
-      </div>
+      <main className="relative z-10">
+        <Hero />
+        <Work />
+        <Experience />
+        <Activity />
+        <Skills />
+        <About />
+        <Testimonials />
+        <Contact />
+      </main>
     </div>
   )
 }

@@ -3,9 +3,8 @@
 // Update text, links, and imported assets here.
 // Components should consume content from this file instead of hardcoding values.
 
-import logo from './assets/logo.jpeg'
-import project1 from './assets/project1.png'
-import project3 from './assets/project3.png'
+import quickChat from './assets/quick-chat.png'
+import tubeRoast from './assets/tube-roast.webp'
 
 const data = {
   identity: {
@@ -15,35 +14,21 @@ const data = {
     location: 'Indore, India',
     email: 'lathisaurav@gmail.com',
     isOpenToWork: true,
-    logo,
   },
 
   hero: {
-    greeting: "Hi, I'm",
-    name: 'Sourabh Lathi',
-    title: 'Software Engineer | Full Stack Developer',
     description:
-      "I'm Sourabh Lathi, a software engineer and full-stack developer specializing in building scalable web applications. I craft responsive, user-centric web applications with modern technologies like React, Node.js, and TypeScript. Let's bring your ideas to life.",
-    portrait: logo,
-
-    // Typewriter lines toggled on repeat by the Intro section.
-    taglines: [
-      'Software Engineer',
-      'Full-Stack Web Architect',
-      'React & Node.js Engineer',
-    ],
+      'I build web products end to end — React in the browser, Node behind it, and a stubborn focus on the parts people actually feel.',
   },
 
   about: {
     heading: 'about',
 
     blurb:
-      'Software Engineer with experience building scalable full-stack applications, designing responsive user interfaces, and developing solutions for real-world problems.',
+      'Software engineer in Indore, building full-stack products with React, TypeScript and Node. I care about interfaces that feel obvious and systems that stay boring under load.',
 
     paragraphs: [
-      'I specialize in modern web development with a strong focus on frontend architecture, user experience, and scalable application design. I enjoy building clean component systems, integrating APIs, managing application state, and creating responsive interfaces that deliver a seamless user experience.',
-
-      'Through my internship and personal projects, I have worked on production-oriented platforms including course-selling applications, AI-powered tools, real-time chat systems, and document management platforms. I am passionate about writing maintainable code, solving challenging problems, and continuously improving my skills as a software engineer.',
+      'Most of what I know came from shipping with three teams — course platforms, admin dashboards, fleet tooling — then fixing things after real people used them. I am happiest at the seam between the interface and the API, and I am slowly working my way into distributed systems.',
     ],
 
     skills: [
@@ -178,48 +163,41 @@ const data = {
 
   projects: [
     {
-      name: 'Quick Chat App',
+      name: 'Quick Chat',
+
+      // The project the hero story puts front and centre.
+      featured: true,
 
       description:
-        'A full-stack real-time chat application built with React, Node.js, Socket.io, and MongoDB. The platform supports real-time messaging, secure JWT authentication, media sharing, and concurrent user connections.',
+        'A MERN chat application with real-time messaging over Socket.io, JWT authentication, image sharing through Cloudinary, and conversations that persist in MongoDB.',
 
-      image: project1,
+      image: quickChat,
+      imageWidth: 1440,
+      imageHeight: 900,
 
-      tech: [
-        'React',
-        'Node.js',
-        'Express.js',
-        'Socket.io',
-        'MongoDB',
-        'JWT',
-        'Cloudinary',
-      ],
+      // Short labels used by the filter row on the work section.
+      tags: ['Full-stack', 'Real-time'],
 
-      // Replace these with the actual project deployment and repository URLs.
+      status: 'live',
       liveUrl: 'https://quick-chat-teal.vercel.app/',
-      repoUrl: 'https://github.com/Sourabh-ctrl',
+      repoUrl: 'https://github.com/Sourabh-ctrl/Quick-Chat',
     },
 
     {
-      name: 'The Paypr Story',
+      name: 'Tube Roast',
 
       description:
-        'A centralized campus document management platform designed to simplify document submission and printing workflows. The system uses token-based verification and automated payment processing to reduce manual queues and improve operational efficiency.',
+        'Signs in with Google, reads your own YouTube data with your permission, and generates a structured roast report from it — with live progress stages, report history, and strict per-user ownership checks.',
 
-      image: project3,
+      image: tubeRoast,
+      imageWidth: 1440,
+      imageHeight: 1080,
 
-      tech: [
-        'React',
-        'Node.js',
-        'Express.js',
-        'MongoDB',
-        'Razorpay',
-        'Multer',
-      ],
+      tags: ['Full-stack', 'AI'],
 
-      // Replace these with the actual project deployment and repository URLs.
-      liveUrl: 'https://github.com/Sourabh-ctrl',
-      repoUrl: 'https://github.com/Sourabh-ctrl',
+      status: 'live',
+      liveUrl: 'https://tube-roast.vercel.app/',
+      repoUrl: 'https://github.com/Sourabh-ctrl/youtube-roast',
     },
   ],
 
@@ -298,6 +276,7 @@ const data = {
   github: {
     username: 'Sourabh-ctrl',
     profileUrl: 'https://github.com/Sourabh-ctrl',
+    repositoriesUrl: 'https://github.com/Sourabh-ctrl?tab=repositories',
     apiUrl: 'https://github-contributions-api.jogruber.de/v4/Sourabh-ctrl?y=last',
   },
 
@@ -318,6 +297,11 @@ const data = {
     },
 
     {
+      label: 'X',
+      url: 'https://x.com/lathisaurav',
+    },
+
+    {
       label: 'Email',
       url: 'mailto:lathisaurav@gmail.com',
     },
@@ -326,24 +310,7 @@ const data = {
   wakatime: {
     username: '67ecb5b0-b4d6-4900-950e-62baa85753f5',
     profileUrl: 'https://wakatime.com/@67ecb5b0-b4d6-4900-950e-62baa85753f5',
-    editor: 'VS Code',
-    project: 'portfolio',
-    todayWorked: '2 hrs 20 mins',
-    yesterdayWorked: '56 mins',
-
-    // Embeddable JSON widget URLs, created at https://wakatime.com/share/embed (paste the .json link):
-    // 1. Create a "Coding Activity" (or totals) widget, pick the range (Today / All Time), choose JSON format.
-    // 2. Copy the URL like https://wakatime.com/share/@<username>/<uuid>.json into one field below.
-    todayEmbedUrl: '', // widget with range "Today"
-    totalEmbedUrl: '', // widget with range "All Time"
-
-    // How often (ms) the live stats refresh.
     refreshMs: 5 * 60 * 1000,
-  },
-
-  attribution: {
-    label: 'Design inspired by Gazi Jarin',
-    url: 'https://github.com/gazijarin/Gazi-V2',
   },
 
   meta: {

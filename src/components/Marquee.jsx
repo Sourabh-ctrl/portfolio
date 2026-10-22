@@ -6,7 +6,7 @@ function Marquee({ children, speed = 35, paused = false }) {
 
   useEffect(() => {
     const track = trackRef.current
-    if (!track) return
+    if (!track) return undefined
 
     const measure = () => {
       const half = track.scrollWidth / 2
@@ -26,11 +26,14 @@ function Marquee({ children, speed = 35, paused = false }) {
     <div className="marquee-edge-fade overflow-hidden py-3">
       <div
         ref={trackRef}
-        className={`marquee-track flex w-max ${paused ? '[animation-play-state:paused]' : ''} motion-reduce:[animation-play-state:paused]`}
-        style={{ '--marquee-duration': `${duration}s` }}
+        data-paused={paused ? 'true' : 'false'}
+        className="marquee-track flex w-max"
+        style={{ '--marquee-duration': `${duration ?? 40}s` }}
       >
         <div className="flex gap-5 pr-5">{children}</div>
-        <div className="flex gap-5">{children}</div>
+        <div className="marquee-clone flex gap-5" aria-hidden="true">
+          {children}
+        </div>
       </div>
     </div>
   )

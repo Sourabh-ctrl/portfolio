@@ -1,200 +1,144 @@
 import { useState } from 'react'
+import { ChevronDown, MapPin } from 'lucide-react'
 import data from '../data.js'
-import { sound } from '../utils/sound.js'
-import FadeInSection from './FadeInSection.jsx'
-import { MapPin, ChevronDown } from 'lucide-react'
+import Reveal from './Reveal.jsx'
 import techIcons from '../techIcons.jsx'
 
 function Experience() {
   const { jobs } = data
-  const [expandedIndex, setExpandedIndex] = useState(0)
+  const [expanded, setExpanded] = useState(0)
 
-  const toggleJob = (index) => {
-    sound.playClick()
-    setExpandedIndex((prev) => (prev === index ? -1 : index))
+  const toggle = (index) => {
+    setExpanded((current) => (current === index ? -1 : index))
   }
 
   return (
-    <section className="pt-12 pb-10 scroll-mt-20" id="experience">
-      <FadeInSection>
-        <div className="mb-6">
-          <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">
-            <span className="text-accent font-sans mr-0.5">/</span>
-            <span>Experience</span>
-          </h2>
-          <p className="text-sm font-sans text-slate mt-1">
-            Roles and teams I've worked with
-          </p>
-        </div>
+    <section
+      id="experience"
+      className="scroll-mt-20 border-t border-border px-5 py-24 sm:px-8 sm:py-28"
+    >
+      <div className="mx-auto grid max-w-[1500px] gap-14 lg:grid-cols-[minmax(240px,0.6fr)_minmax(0,1.4fr)] lg:gap-20">
+        <aside className="h-fit min-w-0 lg:sticky lg:top-28">
+          <Reveal>
+            <p className="text-[0.7rem] uppercase tracking-[0.22em] text-muted-foreground">
+              the log / 2025—now
+            </p>
+          </Reveal>
+          <Reveal delay={70}>
+            <h2 className="mt-5 font-serif text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.02em]">
+              where i&apos;ve
+              <br />
+              <em className="font-normal italic text-muted-foreground">been.</em>
+            </h2>
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="mt-6 max-w-sm text-muted-foreground">
+              Three teams, a lot of production traffic, and an unhealthy appetite for system
+              design.
+            </p>
+          </Reveal>
+        </aside>
 
-        <div>
-          {jobs.map((job, idx) => {
-            const isExpanded = expandedIndex === idx
-            const isLast = idx === jobs.length - 1
-
+        <ol className="relative ml-1 min-w-0 border-l border-border pl-6 sm:pl-10">
+          {jobs.map((job, index) => {
+            const isOpen = expanded === index
             return (
-              <div key={`${job.org}-${job.period}`} className="group relative w-full">
-                <div className="flex w-full min-w-0 gap-3">
-                  {/* Timeline dot + line */}
-                  <div className="relative flex flex-col items-center pt-2.5">
-                    <div
-                      className={`z-10 h-2 w-2 rounded-full transition-colors duration-300 ${
-                        isExpanded
-                          ? 'bg-accent'
-                          : 'border-[1.5px] border-lightest-navy bg-navy'
-                      }`}
-                    />
-                    {!isLast && (
-                      <div className="mt-1 w-px flex-1 bg-lightest-navy/60" />
-                    )}
+              <Reveal key={`${job.org}-${job.period}`} delay={index * 70} as="li">
+                <div className="relative pb-12 last:pb-0">
+                  <span
+                    aria-hidden="true"
+                    className={`absolute -left-[1.5rem] top-2 size-2.5 -translate-x-1/2 rounded-full border transition-colors duration-300 sm:-left-[2.5rem] ${
+                      isOpen
+                        ? 'border-accent bg-accent'
+                        : 'border-border-strong bg-background'
+                    }`}
+                  />
+
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                    <h3 className="font-serif text-[clamp(1.35rem,2.4vw,1.85rem)] leading-tight">
+                      {job.role}
+                    </h3>
+                    <span className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted-foreground">
+                      {job.period}
+                    </span>
                   </div>
 
-                  {/* Job card */}
+                  <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+                    <span>at</span>
+                    {job.url ? (
+                      <a
+                        href={job.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(event) => event.stopPropagation()}
+                        className="link-underline text-foreground"
+                      >
+                        {job.org}
+                      </a>
+                    ) : (
+                      <span className="text-foreground">{job.org}</span>
+                    )}
+                    {job.location && (
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin className="size-3" />
+                        {job.location}
+                      </span>
+                    )}
+                    {job.mode && <span className="text-muted-foreground/80">{job.mode}</span>}
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() => toggle(index)}
+                    aria-expanded={isOpen}
+                    className="mt-2 inline-flex min-h-[2.25rem] items-center gap-1.5 py-1.5 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                  >
+                    {isOpen ? 'hide the detail' : 'read the detail'}
+                    <ChevronDown
+                      className={`size-3.5 transition-transform duration-300 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+
                   <div
-                    data-sound="open"
-                    onClick={() => toggleJob(idx)}
-                    className={`mb-2 w-full min-w-0 flex-1 cursor-pointer rounded-xl px-4 py-3.5 transition-all duration-350 ${
-                      isExpanded
-                        ? 'bg-light-navy/60 ring-1 ring-lightest-navy shadow-soft'
-                        : 'hover:bg-light-navy/40'
+                    className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out ${
+                      isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                     }`}
                   >
-                    {/* Header row */}
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex min-w-0 items-center gap-2">
-                        {job.logoUrl ? (
-                          <img
-                            src={job.logoUrl}
-                            alt={job.org}
-                            width="20"
-                            height="20"
-                            className="h-5 w-5 shrink-0 rounded-sm"
-                          />
-                        ) : (
-                          <div className="h-5 w-5 shrink-0 rounded-sm bg-lightest-navy/60 flex items-center justify-center">
-                            <span className="text-[10px] font-bold text-accent">
-                              {job.org.charAt(0)}
-                            </span>
-                          </div>
-                        )}
-
-                        <h3 className="truncate text-[13.5px] font-semibold text-heading">
-                          {job.role}
-                        </h3>
-
-                        <span className="hidden text-lightest-navy sm:inline">&middot;</span>
-
-                        {job.url ? (
-                          <p className="hidden truncate text-[13px] text-slate sm:block">
-                            <a
-                              href={job.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className="underline decoration-dotted underline-offset-2 hover:text-accent transition-colors"
-                            >
-                              {job.org}
-                            </a>
-                          </p>
-                        ) : (
-                          <p className="hidden truncate text-[13px] text-slate sm:block">
-                            {job.org}
-                          </p>
-                        )}
-                      </div>
-
-                      <div className="flex shrink-0 items-center gap-1.5">
-                        <span className="text-[11.5px] text-slate tabular-nums whitespace-nowrap">
-                          {job.period}
-                        </span>
-                        <ChevronDown
-                          className={`h-3 w-3 text-slate transition-transform duration-200 ${
-                            isExpanded ? 'rotate-180' : ''
-                          }`}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Mobile company name */}
-                    {job.url ? (
-                      <p className="mt-0.5 truncate text-[12.5px] text-slate sm:hidden">
-                        <a
-                          href={job.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="underline decoration-dotted underline-offset-2 hover:text-accent transition-colors"
-                        >
-                          {job.org}
-                        </a>
-                      </p>
-                    ) : (
-                      <p className="mt-0.5 truncate text-[12.5px] text-slate sm:hidden">
-                        {job.org}
-                      </p>
-                    )}
-
-                    {/* Expanded content */}
-                    <div
-                      className={`w-full max-w-full overflow-hidden transition-all duration-400 ease-in-out ${
-                        isExpanded ? 'opacity-100' : 'max-h-0 opacity-0'
-                      }`}
-                    >
-                      {/* Location & Mode */}
-                      {(job.location || job.mode) && (
-                        <div className="mt-2.5 flex flex-wrap items-center gap-2 text-[11.5px] text-slate">
-                          {job.location && (
-                            <span className="flex items-center gap-1">
-                              <MapPin className="size-2.5" />
-                              {job.location}
-                            </span>
-                          )}
-                          {job.mode && (
-                            <span className="rounded-full px-2 py-0.5 text-[11px] font-medium bg-accent/10 text-accent border border-accent/20">
-                              {job.mode}
-                            </span>
-                          )}
-                        </div>
-                      )}
-
-                      {/* Summary */}
-                      {job.summary && (
-                        <p className="mt-2.5 text-[12.5px] text-light-slate leading-relaxed">
-                          {job.summary}
-                        </p>
-                      )}
-
-                      {/* Highlights */}
-                      <ul className="mt-2.5 list-disc space-y-1.5 pl-4 text-[12.5px] leading-relaxed wrap-break-word text-light-slate">
-                        {job.highlights.map((h) => (
-                          <li key={h}>{h}</li>
+                    <div className="overflow-hidden">
+                      <ul className="mt-4 space-y-2.5 border-l border-border pl-4 text-[0.92rem] leading-relaxed text-muted-foreground">
+                        {job.highlights.map((highlight) => (
+                          <li
+                            key={highlight}
+                            className="relative pl-5 before:absolute before:left-0 before:top-[0.72em] before:h-px before:w-2.5 before:bg-border-strong"
+                          >
+                            {highlight}
+                          </li>
                         ))}
                       </ul>
 
-                      {/* Tech tags with icons */}
-                      {job.tech && job.tech.length > 0 && (
-                        <div className="mt-3 flex flex-wrap gap-1.5">
+                      {job.tech?.length > 0 && (
+                        <ul className="mt-5 flex flex-wrap gap-1.5">
                           {job.tech.map((tech) => (
-                            <span
+                            <li
                               key={tech}
-                              className="flex items-center gap-1.5 rounded-lg border border-lightest-navy/80 bg-navy px-2.5 py-1.5 text-[11px] font-medium text-light-slate"
+                              className="flex items-center gap-1.5 border border-border px-2.5 py-1 text-[0.72rem] text-muted-foreground"
                             >
-                              {techIcons[tech] || (
-                                <span className="inline-block h-2 w-2 rounded-full bg-slate" />
-                              )}
+                              {techIcons[tech]}
                               {tech}
-                            </span>
+                            </li>
                           ))}
-                        </div>
+                        </ul>
                       )}
                     </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             )
           })}
-        </div>
-      </FadeInSection>
+        </ol>
+      </div>
     </section>
   )
 }

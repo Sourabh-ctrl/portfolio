@@ -1,101 +1,81 @@
 import data from '../data.js'
-import { sound } from '../utils/sound.js'
-import FadeInSection from './FadeInSection.jsx'
-import techIcons from '../techIcons.jsx'
-
-function AboutGroup({ category, items, visible, baseDelay }) {
-  return (
-    <div>
-      <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate mb-2">
-        {category}
-      </h3>
-      <div className="flex flex-wrap gap-2">
-        {items.map((item, i) => (
-          <button
-            type="button"
-            key={item}
-            onClick={() => sound.playClick()}
-            style={{ transitionDelay: visible ? `${baseDelay + i * 45}ms` : '0ms' }}
-            className={`group flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-lightest-navy bg-light-navy/70 pl-2.5 pr-3.5 py-2 text-[12px] font-bold font-mono text-lightest-slate shadow-xs hover:text-accent transition-all duration-350 ${
-              visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
-            }`}
-          >
-            <span className="flex size-4 shrink-0 items-center justify-center">
-              {techIcons[item] || (
-                <span className="inline-block size-2 rounded-full bg-slate" />
-              )}
-            </span>
-            <span>{item}</span>
-          </button>
-        ))}
-      </div>
-    </div>
-  )
-}
+import Reveal from './Reveal.jsx'
+import { Scribble, ScribbleArrow } from './Scribble.jsx'
 
 function About() {
-  const { about } = data
+  const { about, identity } = data
+
+  const facts = [
+    { label: 'Based in', value: identity.location },
+    { label: 'Role', value: identity.role },
+    { label: 'Status', value: identity.isOpenToWork ? 'Open to work' : 'Not looking' },
+  ]
 
   return (
-    <section className="pt-12 pb-10 scroll-mt-20" id="skills">
-      <FadeInSection>
-        {({ visible }) => (
-          <>
-            <div className="mb-6">
-              <h2 className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-heading flex items-center gap-2">
-                <span className="text-accent font-sans mr-0.5">/</span>
-                <span>My Deep Dives</span>
-              </h2>
-              <p className="text-sm font-sans text-slate mt-1">
-                Technologies and frameworks I build scalable web software with
-              </p>
+    <section id="about" className="scroll-mt-20 border-t border-border px-5 py-24 sm:px-8 sm:py-28">
+      <div className="mx-auto grid max-w-[1500px] gap-14 lg:grid-cols-[minmax(240px,0.6fr)_minmax(0,1.4fr)] lg:gap-20">
+        <aside className="h-fit min-w-0 lg:sticky lg:top-28">
+          <Reveal>
+            <p className="text-[0.7rem] uppercase tracking-[0.22em] text-muted-foreground">
+              about
+            </p>
+          </Reveal>
+          <Reveal delay={70}>
+            <h2 className="mt-5 font-serif text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.02em]">
+              the short
+              <br />
+              <em className="font-normal italic text-muted-foreground">version.</em>
+            </h2>
+          </Reveal>
+          <Reveal delay={140}>
+            <div className="relative mt-8 hidden lg:block">
+              <Scribble rotate={-6}>psst — i write clean code. mostly.</Scribble>
+              <ScribbleArrow
+                className="-right-2 -top-8"
+                d="M40 8 C30 20 18 26 6 26"
+                head="M6 26 L15 20 M6 26 L14 33"
+              />
             </div>
+          </Reveal>
+        </aside>
 
-            <div className="flex flex-col gap-5">
-              {about.skills.map((group, gi) => (
-                <AboutGroup
-                  key={group.category}
-                  category={group.category}
-                  items={group.items}
-                  visible={visible}
-                  baseDelay={gi * 60}
-                />
+        <div className="min-w-0">
+          <Reveal delay={100}>
+            <p className="max-w-3xl font-serif text-[clamp(1.35rem,2.6vw,2rem)] leading-[1.28] text-foreground">
+              {about.blurb}
+            </p>
+          </Reveal>
+
+          <Reveal delay={160}>
+            <div className="mt-9 max-w-2xl text-muted-foreground">
+              {about.paragraphs.map((paragraph) => (
+                <p key={paragraph.slice(0, 24)} className="mb-4">
+                  {paragraph}
+                </p>
               ))}
             </div>
+          </Reveal>
 
-            {about.currentlyLearning?.length > 0 && (
-              <div className="mt-8 rounded-3xl border border-accent/30 bg-accent/5 p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
-                  </span>
-                  <h3 className="font-serif text-sm font-bold tracking-tight text-heading">
-                    Currently Exploring
-                  </h3>
-                  <span className="ml-auto text-xs font-mono text-accent">advancing</span>
+          <Reveal delay={220}>
+            <dl className="mt-10 grid gap-px border border-border bg-border sm:grid-cols-3">
+              {facts.map((fact) => (
+                <div key={fact.label} className="bg-background px-6 py-5">
+                  <dt className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted-foreground">
+                    {fact.label}
+                  </dt>
+                  <dd className="mt-2 font-serif text-xl">{fact.value}</dd>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {about.currentlyLearning.map((topic, i) => (
-                    <button
-                      type="button"
-                      key={topic}
-                      onClick={() => sound.playClick()}
-                      style={{ transitionDelay: visible ? `${i * 45}ms` : '0ms' }}
-                      className={`inline-flex cursor-pointer items-center gap-1.5 rounded-xl border border-accent/40 bg-navy px-3 py-1.5 text-xs font-mono font-medium text-accent transition-all duration-350 ${
-                        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
-                      }`}
-                    >
-                      <span className="text-slate">&rarr;</span>
-                      {topic}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </>
-        )}
-      </FadeInSection>
+              ))}
+            </dl>
+          </Reveal>
+
+          <Reveal delay={280}>
+            <p className="mt-8 font-hand text-[1.15rem] text-muted-foreground">
+              the longer version is just a conversation.
+            </p>
+          </Reveal>
+        </div>
+      </div>
     </section>
   )
 }
