@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Hero from './components/Hero.jsx'
 import Work from './components/Work.jsx'
 import Experience from './components/Experience.jsx'
@@ -10,6 +11,13 @@ import NavBar from './components/NavBar.jsx'
 import CursorComment from './components/CursorComment.jsx'
 
 function App() {
+  useEffect(() => {
+    const blockCopy = (event) => event.preventDefault()
+
+    document.addEventListener('copy', blockCopy)
+    return () => document.removeEventListener('copy', blockCopy)
+  }, [])
+
   return (
     <div className="relative min-h-screen bg-background font-sans antialiased">
       <CursorComment />

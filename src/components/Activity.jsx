@@ -5,9 +5,8 @@ import { ArrowUpRight } from 'lucide-react'
 import data from '../data.js'
 
 /*
- * The receipts: two live embeds. The GitHub card keeps GitHub's own visual
- * language (light contribution shades, its system font stack), while the
- * LeetCode card stays in the page's editorial one.
+ * The receipts: two live embeds, each borrowing its source's own light-theme
+ * language — GitHub's contribution graph and LeetCode's solved-problem profile.
  */
 function Activity() {
   return (

@@ -20,7 +20,7 @@ function Work() {
   return (
     <section
       id="work"
-      className="relative min-h-screen scroll-mt-20 overflow-hidden border-t border-foreground px-5 pb-24 pt-28 sm:px-8"
+      className="relative min-h-screen scroll-mt-20 border-t border-foreground px-5 pb-24 pt-28 sm:px-8"
     >
       <div
         aria-hidden="true"

@@ -48,7 +48,6 @@ Motion is progressive: `Reveal.jsx` and `FadeInSection.jsx` reveal on scroll, th
 
 - Project screenshots live in `src/assets/` (Quick Chat: `quick-chat.png`, Tube Roast: `tube-roast.webp`) and are imported by `data.js`.
 - The nav/brand image is `src/assets/logo.jpeg`.
-- Testimonial portraits are generated DiceBear placeholders; if the service is slow or blocked, each card falls back to the person's initials. The quotes themselves are real.
 
 ### Projects
 

@@ -21,7 +21,7 @@ function Experience() {
         <aside className="h-fit min-w-0 lg:sticky lg:top-28">
           <Reveal>
             <p className="text-[0.7rem] uppercase tracking-[0.22em] text-muted-foreground">
-              the log / 2025—now
+              the log / 2025—2026
             </p>
           </Reveal>
           <Reveal delay={70}>
@@ -43,8 +43,13 @@ function Experience() {
           {jobs.map((job, index) => {
             const isOpen = expanded === index
             return (
-              <Reveal key={`${job.org}-${job.period}`} delay={index * 70} as="li">
-                <div className="relative pb-12 last:pb-0">
+              <Reveal
+                key={`${job.org}-${job.period}`}
+                delay={index * 70}
+                as="li"
+                className="pb-12 last:pb-0"
+              >
+                <div className="relative">
                   <span
                     aria-hidden="true"
                     className={`absolute -left-[1.5rem] top-2 size-2.5 -translate-x-1/2 rounded-full border transition-colors duration-300 sm:-left-[2.5rem] ${
@@ -87,11 +92,18 @@ function Experience() {
                     {job.mode && <span className="text-muted-foreground/80">{job.mode}</span>}
                   </p>
 
+                  {job.summary && (
+                    <p className="mt-3 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground">
+                      {job.summary}
+                    </p>
+                  )}
+
                   <button
                     type="button"
                     onClick={() => toggle(index)}
                     aria-expanded={isOpen}
-                    className="mt-2 inline-flex min-h-[2.25rem] items-center gap-1.5 py-1.5 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                    aria-controls={`job-detail-${index}`}
+                    className="mt-3 inline-flex min-h-[2.25rem] items-center gap-1.5 py-1.5 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-200 hover:text-foreground"
                   >
                     {isOpen ? 'hide the detail' : 'read the detail'}
                     <ChevronDown
@@ -102,6 +114,7 @@ function Experience() {
                   </button>
 
                   <div
+                    id={`job-detail-${index}`}
                     className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out ${
                       isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                     }`}

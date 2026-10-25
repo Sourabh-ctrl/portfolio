@@ -41,7 +41,7 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-20 overflow-hidden border-t border-border px-5 pb-24 pt-24 sm:px-8 md:px-[4.5vw] md:pt-[16vh]"
+      className="relative scroll-mt-20 overflow-hidden border-t border-border px-5 pb-6 pt-24 sm:px-8 sm:pb-8 md:px-[4.5vw] md:pt-[16vh]"
     >
       <div className="max-w-3xl">
         <div className="relative min-w-0">
@@ -114,13 +114,6 @@ function Contact() {
                 })}
               </div>
             </div>
-          </Reveal>
-
-          <Reveal delay={260}>
-            <p className="mt-10 max-w-lg text-[0.95rem] leading-relaxed text-muted-foreground">
-              Have a product to ship, a system to untangle, or a role worth talking about? Tell me
-              what you&apos;re building and I&apos;ll reply with something useful, not a pitch.
-            </p>
           </Reveal>
         </div>
       </div>

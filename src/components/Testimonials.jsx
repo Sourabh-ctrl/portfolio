@@ -91,12 +91,6 @@ function Testimonials() {
           ))}
         </Marquee>
       </FadeInSection>
-
-      <div className="mx-auto max-w-[1500px]">
-        <p className="mt-3 text-xs text-muted-foreground">
-          Portraits are generated placeholders; the quotes are real.
-        </p>
-      </div>
     </section>
   )
 }

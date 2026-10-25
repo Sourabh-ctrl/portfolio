@@ -203,13 +203,13 @@ function GitHubContributions() {
     <div
       ref={cardRef}
       style={GITHUB_FONT_STYLE}
-      className="relative min-w-0 rounded-xl border border-border bg-card p-4 text-foreground shadow-[var(--shadow-card)] sm:p-6"
+      className="relative min-w-0 rounded-md border border-[#d0d7de] bg-white p-4 text-[#1f2328] sm:p-6"
       onMouseLeave={clearTooltip}
     >
       {/* Card Header Bar */}
-      <div className="mb-4 flex flex-col justify-between gap-3 border-b border-border pb-3 sm:flex-row sm:items-center">
+      <div className="mb-4 flex flex-col justify-between gap-3 border-b border-[#d0d7de] pb-3 sm:flex-row sm:items-center">
         <div className="flex items-center gap-2.5">
-          <span className="rounded-md border border-border bg-muted p-1.5 text-foreground">
+          <span className="rounded-md border border-[#d0d7de] bg-[#f6f8fa] p-1.5 text-[#1f2328]">
             <FaGithub className="size-4" />
           </span>
           <span className="text-[14px] font-normal leading-normal sm:text-[15px]">
@@ -230,7 +230,7 @@ function GitHubContributions() {
             href={github.profileUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex items-center gap-1.5 text-[12px] font-normal text-muted-foreground underline decoration-border underline-offset-2 transition-colors hover:text-foreground hover:decoration-foreground"
+            className="inline-flex items-center gap-1.5 text-[12px] font-normal text-[#656d76] underline decoration-[#d0d7de] underline-offset-2 transition-colors hover:text-[#0969da] hover:decoration-[#0969da]"
           >
             <span>@{github.username}</span>
             <svg className="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -249,12 +249,12 @@ function GitHubContributions() {
       <div className="relative w-full overflow-x-auto">
         {!hasData && loading ? (
           <div className="flex animate-pulse flex-col items-center justify-center gap-2 py-8">
-            <div className="h-4 w-48 rounded bg-muted" />
-            <div className="h-28 w-full max-w-[50rem] rounded border border-border bg-muted/60" />
+            <div className="h-4 w-48 rounded bg-[#f6f8fa]" />
+            <div className="h-28 w-full max-w-[50rem] rounded border border-[#d0d7de] bg-[#f6f8fa]" />
           </div>
         ) : !hasData && failed ? (
           <div className="flex flex-col items-start gap-4 py-10">
-            <p className="max-w-md text-sm text-muted-foreground">
+            <p className="max-w-md text-sm text-[#656d76]">
               GitHub is not answering at the moment. The profile link above still works, and the
               heatmap will come back when the API does.
             </p>
@@ -265,7 +265,7 @@ function GitHubContributions() {
                 setFailed(false)
                 setReloadKey((key) => key + 1)
               }}
-              className="inline-flex h-9 items-center gap-2 border border-foreground px-3 text-xs font-medium transition-colors hover:bg-muted"
+              className="inline-flex h-9 items-center gap-2 rounded-md border border-[#d0d7de] bg-[#f6f8fa] px-3 text-xs font-medium text-[#24292f] transition-colors hover:bg-[#eef1f4]"
             >
               <RotateCw className="size-3.5" />
               try again
@@ -384,7 +384,7 @@ function GitHubContributions() {
       )}
 
       {/* Card Footer: Less -> More Legend */}
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-3 text-[12px] font-normal text-muted-foreground">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[#d0d7de] pt-3 text-[12px] font-normal text-[#656d76]">
         <div className="flex items-center gap-2">
           <span
             aria-hidden="true"
@@ -401,7 +401,7 @@ function GitHubContributions() {
                 setFailed(false)
                 setReloadKey((key) => key + 1)
               }}
-              className="underline decoration-border underline-offset-2 transition-colors hover:text-foreground hover:decoration-foreground"
+              className="underline decoration-[#d0d7de] underline-offset-2 transition-colors hover:text-[#0969da] hover:decoration-[#0969da]"
             >
               refresh
             </button>

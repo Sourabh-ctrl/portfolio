@@ -7,9 +7,9 @@ const LEETCODE_USERNAME = 'sourabhlathi'
 const RELATIVE_TICK = 30000
 
 const DIFFICULTY = [
-  { label: 'Easy', color: '#3fb950' },
-  { label: 'Medium', color: '#d29922' },
-  { label: 'Hard', color: '#f85149' },
+  { label: 'Easy', color: '#00b8a3' },
+  { label: 'Medium', color: '#ffc01e' },
+  { label: 'Hard', color: '#ff375f' },
 ]
 
 function relativeTime(timestamp, now) {
@@ -96,9 +96,8 @@ function useCountUp(target, active) {
 }
 
 /*
- * LeetCode, read like a box score rather than three equal cards: the total is
- * the headline, the ratio is the evidence, and today's submissions are the
- * footnotes. Nothing is shown as a real number until the API confirms it.
+ * LeetCode's own light profile language: white surface, orange mark, a donut
+ * of solved problems, then the recent-submission feed. Everything is live.
  */
 function StatCards() {
   const [lc, setLc] = useState(null)
@@ -154,7 +153,13 @@ function StatCards() {
 
   const active = inView && !loading
   const solvedDisplay = useCountUp(lc?.solved ?? 0, active)
-  const diffTotal = (lc?.easy ?? 0) + (lc?.medium ?? 0) + (lc?.hard ?? 0) || 1
+  const solveTotal = (lc?.easy ?? 0) + (lc?.medium ?? 0) + (lc?.hard ?? 0) || 1
+  const easyPct = ((lc?.easy ?? 0) / solveTotal) * 100
+  const mediumPct = ((lc?.medium ?? 0) / solveTotal) * 100
+  const hardPct = ((lc?.hard ?? 0) / solveTotal) * 100
+  const donut = `conic-gradient(#00b8a3 0 ${easyPct}%, #ffc01e ${easyPct}% ${
+    easyPct + mediumPct
+  }%, #ff375f ${easyPct + mediumPct}% ${easyPct + mediumPct + hardPct}%)`
   const difficulty = DIFFICULTY.map((entry) => ({
     ...entry,
     value: lc?.[entry.label.toLowerCase()] ?? 0,
@@ -165,157 +170,173 @@ function StatCards() {
   const todayRecents = (lc?.recents || []).filter((r) => r.time >= todayStart.getTime())
 
   const status = loading ? 'syncing' : failed ? 'offline' : 'live'
+  const solvedLabel = loading || failed ? '—' : solvedDisplay.toLocaleString()
+  const showData = !loading && !failed
 
   return (
     <Reveal className="min-w-0">
-      <div ref={wrapRef} className="min-w-0 border border-border bg-card">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-6 py-5">
+      <div
+        ref={wrapRef}
+        className="min-w-0 overflow-hidden rounded-xl border border-[#e5e7eb] bg-white font-sans text-[#262626]"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#eff1f6] px-5 py-4">
           <div className="flex items-center gap-3">
-            <span className="flex size-9 items-center justify-center border border-border text-foreground">
-              <SiLeetcode className="size-4" />
+            <span className="flex size-9 items-center justify-center rounded-lg bg-[#ffa116]/10 text-[#ffa116]">
+              <SiLeetcode className="size-5" />
             </span>
             <div>
-              <p className="text-sm font-medium text-foreground">LeetCode</p>
-              <p className="text-xs text-muted-foreground">@{LEETCODE_USERNAME}</p>
+              <p className="text-[15px] font-semibold leading-tight">LeetCode</p>
+              <a
+                href={`https://leetcode.com/u/${LEETCODE_USERNAME}/`}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-xs text-[#8a8a8a] transition-colors hover:text-[#262626]"
+              >
+                @{LEETCODE_USERNAME}
+              </a>
             </div>
           </div>
 
-          <span className="inline-flex items-center gap-1.5 border border-border px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f6f7f9] px-2.5 py-1 text-[11px] font-medium text-[#595959]">
             <span
               aria-hidden="true"
               className={`size-1.5 rounded-full ${
-                failed ? 'bg-signal-violet' : 'live-dot bg-signal-green'
+                failed ? 'bg-[#ff375f]' : loading ? 'bg-[#c2c2c2]' : 'live-dot bg-[#2cbb5d]'
               }`}
             />
             {status}
           </span>
         </div>
 
-        <div className="px-6 py-6">
-          <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-5">
-            <div className="min-w-[8rem]">
-              <p className="font-serif text-[clamp(3rem,6.4vw,4.6rem)] leading-[0.85] tabular-nums text-foreground">
-                {loading ? '—' : failed ? '—' : solvedDisplay.toLocaleString()}
-              </p>
-              <p className="mt-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted-foreground">
-                problems solved
-              </p>
+        <div className="px-5 py-5">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-sm font-semibold">Solved Problems</p>
+            <span className="text-[11px] text-[#8a8a8a]">live profile</span>
+          </div>
+
+          <div className="mt-4 flex flex-col items-center gap-6 sm:flex-row sm:flex-nowrap">
+            <div className="relative size-36 shrink-0">
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 rounded-full"
+                style={{ background: showData ? donut : '#eff1f6' }}
+              />
+              <div className="absolute inset-[17px] flex flex-col items-center justify-center rounded-full bg-white">
+                <span className="text-[2rem] font-semibold leading-none tabular-nums">
+                  {solvedLabel}
+                </span>
+                <span className="mt-1.5 text-[0.62rem] uppercase tracking-[0.14em] text-[#8a8a8a]">
+                  solved
+                </span>
+              </div>
             </div>
 
-            <dl className="grid grow grid-cols-2 gap-x-8 gap-y-3 sm:max-w-[16rem]">
-              <div>
-                <dt className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted-foreground">
-                  acceptance
-                </dt>
-                <dd className="mt-1 font-serif text-2xl tabular-nums text-foreground">
-                  {loading || failed || lc?.acceptance == null ? '—' : `${lc.acceptance}%`}
-                </dd>
-              </div>
-              <div>
-                <dt className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted-foreground">
-                  ranking
-                </dt>
-                <dd className="mt-1 font-serif text-2xl tabular-nums text-foreground">
-                  {loading || failed || !lc?.ranking ? '—' : `#${lc.ranking.toLocaleString()}`}
-                </dd>
-              </div>
+            <dl className="min-w-0 flex-1">
+              {difficulty.map((entry) => (
+                <div
+                  key={entry.label}
+                  className="flex items-center justify-between gap-4 border-b border-[#eff1f6] py-2.5 first:pt-0 last:border-b-0 last:pb-0"
+                >
+                  <dt className="flex items-center gap-2 text-sm">
+                    <span
+                      aria-hidden="true"
+                      className="size-2 rounded-full"
+                      style={{ backgroundColor: entry.color }}
+                    />
+                    {entry.label}
+                  </dt>
+                  <dd className="text-sm font-semibold tabular-nums">
+                    {loading || failed ? '—' : entry.value}
+                  </dd>
+                </div>
+              ))}
             </dl>
           </div>
 
+          <dl className="mt-5 grid grid-cols-2 gap-3 border-t border-[#eff1f6] pt-4">
+            <div>
+              <dt className="text-[0.62rem] uppercase tracking-[0.14em] text-[#8a8a8a]">
+                acceptance
+              </dt>
+              <dd className="mt-1 text-lg font-semibold tabular-nums">
+                {loading || failed || lc?.acceptance == null ? '—' : `${lc.acceptance}%`}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[0.62rem] uppercase tracking-[0.14em] text-[#8a8a8a]">
+                ranking
+              </dt>
+              <dd className="mt-1 text-lg font-semibold tabular-nums">
+                {loading || failed || !lc?.ranking ? '—' : `#${lc.ranking.toLocaleString()}`}
+              </dd>
+            </div>
+          </dl>
+
           {failed ? (
-            <p className="mt-7 border-t border-border pt-5 text-sm text-muted-foreground">
+            <p className="mt-5 border-t border-[#eff1f6] pt-4 text-sm text-[#8a8a8a]">
               Live stats are unavailable right now. The profile itself is still there.
             </p>
           ) : (
-            <>
-              <div className="mt-8">
-                <div className="flex h-1.5 w-full overflow-hidden bg-muted">
-                  {difficulty.map((entry) => (
-                    <div
-                      key={entry.label}
-                      className="transition-[width] duration-1000 ease-out"
-                      style={{
-                        width: active ? `${(entry.value / diffTotal) * 100}%` : '0%',
-                        backgroundColor: entry.color,
-                        opacity: active ? 1 : 0,
-                      }}
+            <div className="mt-5 border-t border-[#eff1f6] pt-4">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm font-semibold">Today&apos;s solves</p>
+                <span className="text-[11px] text-[#8a8a8a]">
+                  {loading ? 'syncing' : `${todayRecents.length} submissions`}
+                </span>
+              </div>
+
+              <ul className="mt-2 flex flex-col">
+                {loading ? (
+                  Array.from({ length: 3 }).map((_, index) => (
+                    <li
+                      key={index}
+                      className="h-10 animate-pulse border-b border-[#eff1f6] bg-[#f6f7f9]"
                     />
-                  ))}
-                </div>
-                <div className="mt-4 grid grid-cols-3 gap-3">
-                  {difficulty.map((entry) => (
-                    <div key={entry.label} className="flex items-center justify-between gap-2">
-                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <span
-                          aria-hidden="true"
-                          className="size-1.5 rounded-full"
-                          style={{ backgroundColor: entry.color }}
-                        />
-                        {entry.label}
-                      </span>
-                      <span className="font-mono text-xs tabular-nums text-foreground">
-                        {loading ? '—' : entry.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-7 border-t border-border pt-5">
-                <p className="mb-2 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted-foreground">
-                  today&apos;s solves
-                </p>
-
-                <ul className="flex flex-col">
-                  {loading ? (
-                    Array.from({ length: 3 }).map((_, index) => (
-                      <li key={index} className="h-10 animate-pulse border-b border-border bg-muted/40" />
-                    ))
-                  ) : todayRecents.length ? (
-                    todayRecents.slice(0, 4).map((entry, index) => {
-                      const accepted = entry.status === 'Accepted'
-                      return (
-                        <li
-                          key={`${entry.slug}-${index}`}
-                          className="flex items-center gap-3 border-b border-border py-2.5 last:border-b-0"
+                  ))
+                ) : todayRecents.length ? (
+                  todayRecents.slice(0, 4).map((entry, index) => {
+                    const accepted = entry.status === 'Accepted'
+                    return (
+                      <li
+                        key={`${entry.slug}-${index}`}
+                        className="flex items-center gap-2.5 border-b border-[#eff1f6] py-2.5 last:border-b-0"
+                      >
+                        {accepted ? (
+                          <CheckCircle2 className="size-3.5 shrink-0 text-[#2cbb5d]" />
+                        ) : (
+                          <CircleX className="size-3.5 shrink-0 text-[#ff375f]" />
+                        )}
+                        <a
+                          href={`https://leetcode.com/problems/${entry.slug}/`}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="min-w-0 flex-1 truncate text-sm text-[#262626] transition-colors hover:text-[#ffa116]"
                         >
-                          {accepted ? (
-                            <CheckCircle2 className="size-3.5 shrink-0 text-[#3fb950]" />
-                          ) : (
-                            <CircleX className="size-3.5 shrink-0 text-[#f85149]" />
-                          )}
-                          <a
-                            href={`https://leetcode.com/problems/${entry.slug}/`}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            className="min-w-0 flex-1 truncate text-sm text-foreground transition-colors hover:text-muted-foreground"
-                          >
-                            {entry.title}
-                          </a>
-                          <span className="hidden shrink-0 border border-border px-1.5 py-0.5 font-mono text-[0.6rem] uppercase text-muted-foreground sm:inline">
-                            {entry.lang}
-                          </span>
-                          <span className="shrink-0 font-mono text-[0.65rem] text-muted-foreground">
-                            {relativeTime(entry.time, now)}
-                          </span>
-                        </li>
-                      )
-                    })
-                  ) : (
-                    <li className="py-3 text-sm text-muted-foreground">
-                      No submissions today yet. The streak resumes tomorrow.
-                    </li>
-                  )}
-                </ul>
-              </div>
-            </>
+                          {entry.title}
+                        </a>
+                        <span className="hidden shrink-0 rounded bg-[#f6f7f9] px-1.5 py-0.5 text-[0.62rem] text-[#595959] sm:inline">
+                          {entry.lang}
+                        </span>
+                        <span className="shrink-0 text-[0.65rem] text-[#8a8a8a]">
+                          {relativeTime(entry.time, now)}
+                        </span>
+                      </li>
+                    )
+                  })
+                ) : (
+                  <li className="py-3 text-sm text-[#8a8a8a]">
+                    No submissions today yet. The streak resumes tomorrow.
+                  </li>
+                )}
+              </ul>
+            </div>
           )}
 
           <a
             href={`https://leetcode.com/u/${LEETCODE_USERNAME}/`}
             target="_blank"
             rel="noreferrer noopener"
-            className="link-underline mt-6 inline-flex items-center gap-1.5 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+            className="mt-5 inline-flex items-center gap-1 text-xs font-medium text-[#ffa116] transition-colors hover:text-[#e08e00]"
           >
             open the full profile
             <ArrowUpRight className="size-3" />

@@ -110,53 +110,59 @@ const data = {
       logoUrl: 'https://www.google.com/s2/favicons?domain=iqpaths.com&sz=32',
       url: 'https://www.iqpaths.com/',
 
+      summary: 'Frontend architecture for a course platform and an AI résumé builder.',
+
       tech: ['React', 'TypeScript', 'Node.js', 'Tailwind CSS', 'Redux', 'REST APIs', 'Axios'],
 
       highlights: [
-        'Devised the frontend architecture for a course-selling platform utilizing React.js, handling 1,000+ users and reducing page load times by 25% through optimized component rendering.',
+        'Built the frontend architecture for a course-selling platform used by 1,000+ people, cutting page-load time by 25% through smarter component rendering.',
 
-        'Integrated dynamic content via 15+ REST APIs using Axios, ensuring seamless data consistency and decreasing data fetch latency by 20%.',
+        'Wired 15+ REST endpoints with Axios, keeping data consistent across views and shaving 20% off fetch latency.',
 
-        'Engineered multiple responsive pages for an AI-powered resume builder utilizing TypeScript and Redux, scaling the platform to support 500+ concurrent users with centralized global state management.',
+        'Shipped responsive pages for an AI-powered résumé builder with TypeScript and Redux, supporting 500+ concurrent users from one shared state layer.',
 
-        'Constructed highly modular user interfaces utilizing Tailwind CSS, increasing component reusability and reducing frontend development time by 30% for subsequent feature rollouts.',
+        'Turned repeated UI into reusable Tailwind components, cutting frontend development time by 30% on later rollouts.',
       ],
     },
 
     {
       role: 'Full Stack Developer Intern',
       org: 'SMTP Mailers',
-      period: 'Jun 2025 - July 2025',
+      period: 'Jun 2025 – Jul 2025',
       location: 'Indore, India',
       mode: 'On-site',
       logoUrl: 'https://www.google.com/s2/favicons?domain=smtpmailers.com&sz=32',
       url: 'https://smtpmailers.com/',
 
+      summary: 'Auth, admin dashboards and a build shipped end to end.',
+
       tech: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Redux', 'Node.js'],
 
       highlights: [
-        'Secure Access Control: Engineered a robust authentication system with backend API integration and session persistence to ensure secure, authorized-only access.',
-        'Data Visualization Dashboard: Developed an interactive admin interface featuring dynamic charts and tables to transform complex datasets into clear, actionable insights.',
-        'Full-Lifecycle Development: Managed the project from architectural planning and repository structuring to final debugging, rigorous testing, and documentation.',
+        'Built authentication with backend API integration and session persistence, so only authorized users get through.',
+        'Designed an admin dashboard with live charts and tables that turns dense data into something readable at a glance.',
+        'Took the project from architecture and repo setup through debugging, testing and documentation.',
       ],
     },
 
     {
       role: 'Frontend Developer Intern',
       org: 'Track My Fleetix',
-      period: 'Apr 2026 - May 2026',
+      period: 'Apr 2026 – May 2026',
       location: 'Indore, India',
       mode: 'Remote',
       url: 'https://www.trackmyfleetix.com/',
       logoUrl: 'https://www.google.com/s2/favicons?domain=trackmyfleetix.com&sz=32',
 
+      summary: 'Fleet dashboards and FASTag workflows for a logistics platform.',
+
       tech: ['React', 'Redux', 'React Router', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'Git'],
 
       highlights: [
-        'Dashboard Development: Developed and enhanced responsive dashboards for fleet and logistics management, presenting key operational data in a clear and user-friendly interface.',
-        'FASTag Management: Built frontend interfaces for FASTag-related management workflows, helping users efficiently view, manage, and track vehicle and transaction-related information.',
-        'Multiple Frontend Pages: Developed and maintained multiple responsive web pages and UI components across the platform, ensuring consistent design and smooth user experience.',
-        'Frontend Optimization: Improved application usability by creating reusable components, handling dynamic data, and implementing responsive layouts for different screen sizes.',
+        'Built responsive fleet and logistics dashboards that surface the numbers operators check every day.',
+        'Shipped FASTag workflows for viewing, managing and tracking vehicles and transactions.',
+        'Maintained shared UI across the platform, keeping pages consistent as the product grew.',
+        'Cut repeated work with reusable components, dynamic data handling and layouts that hold up on every screen size.',
       ],
     },
   ],

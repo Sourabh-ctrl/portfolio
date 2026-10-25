@@ -161,13 +161,9 @@ function Hero() {
 
               <div className="mt-6 min-h-[1.125rem]" aria-live="polite">
                 {coding && (
-                  <a
-                    href={wakatime.profileUrl}
-                    target="_blank"
-                    rel="noreferrer noopener"
+                  <p
                     aria-label={`Today's coding time: ${coding.todayWorked}${coding.editor ? ` in ${coding.editor}` : ''}, via WakaTime`}
-                    className="group inline-flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
-                    data-cursor="the honest metric."
+                    className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-muted-foreground"
                   >
                     <span
                       aria-hidden="true"
@@ -182,7 +178,7 @@ function Hero() {
                         in {coding.editor}
                       </span>
                     )}
-                  </a>
+                  </p>
                 )}
               </div>
             </div>

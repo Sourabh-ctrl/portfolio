@@ -14,6 +14,7 @@ const contact = { href: '#contact', label: "let's talk" }
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeId, setActiveId] = useState(null)
+  const [solid, setSolid] = useState(false)
 
   useEffect(() => {
     const ids = navItems.map((item) => item.href)
@@ -38,6 +39,22 @@ function NavBar() {
   }, [])
 
   useEffect(() => {
+    const updateSolid = () => {
+      const hero = document.querySelector('#home')
+      const threshold = hero ? hero.offsetHeight - 96 : 0
+      setSolid(window.scrollY > threshold)
+    }
+
+    updateSolid()
+    window.addEventListener('scroll', updateSolid, { passive: true })
+    window.addEventListener('resize', updateSolid, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', updateSolid)
+      window.removeEventListener('resize', updateSolid)
+    }
+  }, [])
+
+  useEffect(() => {
     if (!menuOpen) return undefined
     const onKey = (event) => {
       if (event.key === 'Escape') setMenuOpen(false)
@@ -57,7 +74,11 @@ function NavBar() {
   const links = [...navItems, contact]
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 grid grid-cols-[minmax(0,1fr)_auto] items-center bg-background px-5 py-5 sm:px-8 sm:py-6">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 grid grid-cols-[minmax(0,1fr)_auto] items-center px-5 py-5 transition-colors duration-300 sm:px-8 sm:py-6 ${
+        solid || menuOpen ? 'bg-background' : 'bg-transparent'
+      }`}
+    >
       <a
         href="#home"
         aria-label={`${data.identity.name} — back to top`}
