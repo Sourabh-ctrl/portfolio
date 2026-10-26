@@ -57,7 +57,7 @@ function Work() {
                   variant="filter"
                   data-active={filter === item}
                   onClick={() => setFilter(item)}
-                  data-cursor={`filter: ${item.toLowerCase()}`}
+                  data-cursor={item.toLowerCase()}
                 >
                   {item}
                 </Button>
