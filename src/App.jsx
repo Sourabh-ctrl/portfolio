@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import Intro from './components/Intro.jsx'
 import About from './components/About.jsx'
 import Experience from './components/Experience.jsx'
@@ -27,6 +28,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <Analytics />
     </div>
   )
 }
