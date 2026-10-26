@@ -1,7 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import fs from 'node:fs'
 import path from 'node:path'
 import { Buffer } from 'node:buffer'
 
@@ -83,5 +82,13 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173,
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve('index.html'),
+        inspired: path.resolve('inspired/index.html'),
+      },
+    },
   },
 })

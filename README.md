@@ -1,6 +1,15 @@
 # Portfolio
 
-A single-page personal portfolio inspired by [gazijarin.com](https://gazijarin.com) (the `Gazi-V2` repo) — same dark-navy palette, typography, and ASCII-portrait hero, but built as a fresh Vite + React app with fully own code and data-driven content.
+A dual-design personal portfolio built as a Vite + React app. The classic dark-navy design lives at `/`; the cream editorial redesign lives at `/inspired/`.
+
+## Two designs
+
+- `/` — classic dark-navy portfolio. Entered from `src/main.jsx`.
+- `/inspired/` — cream editorial portfolio. Entered from `src/inspired/main.jsx`.
+- The tiny dot after the classic footer copyright opens `/inspired/`.
+- A low-contrast `classic` link at the bottom of the inspired contact section returns to `/`.
+
+Both pages have isolated HTML, CSS, data, and assets. Shared assets such as `public/logo.jpeg`, `public/resume.pdf`, and `public/tech-icons/` remain at the site root.
 
 ## Stack
 
@@ -13,13 +22,14 @@ A single-page personal portfolio inspired by [gazijarin.com](https://gazijarin.c
 
 ```bash
 npm install
-npm run dev      # dev server at http://localhost:5173
+npm run dev      # http://localhost:5173/portfolio/
+                 # http://localhost:5173/portfolio/inspired/
 ```
 
 Production:
 
 ```bash
-npm run build    # static bundle in dist/
+npm run build    # static bundle in dist/ with both pages
 npm run preview  # serve the production build locally
 ```
 
@@ -27,36 +37,49 @@ Quality gates (no test suite — deliberate): `npm run lint` and `npm run build`
 
 ## Replace the placeholder content
 
-**Every piece of site copy lives in one file: `src/data.js`.** Rewriting the site is a `data.js` edit — components never hardcode content.
+Site copy is data-driven but split by design:
+
+- Classic: `src/data.js`
+- Inspired: `src/inspired/data.js`
 
 ### Hero avatar
 
-The hero avatar and nav-brand image are read from `src/assets/logo.jpeg` (imported by `src/data.js` as `hero.portrait` / `identity.logo`, and rendered by `src/components/Intro.jsx` and `src/components/NavBar.jsx`). To swap in another photo, replace `src/assets/logo.jpeg` — no code change needed.
+The classic avatar is read from `src/assets/logo.jpeg` (imported by `src/data.js` and rendered by `src/components/Intro.jsx` and `src/components/NavBar.jsx`). The inspired design uses its own copy in `src/inspired/assets/`. Replace the relevant image — no code change needed.
 
 ### Projects
 
-- Add/remove objects in `data.projects` (image, description, tech, `liveUrl`, `repoUrl`).
-- Drop each project image into `src/assets/` and import it in `data.js`, then reference it from the matching object.
+- Classic projects: edit `data.projects` in `src/data.js`; images live in `src/assets/`.
+- Inspired projects: edit the project entries in `src/inspired/data.js`; images live in `src/inspired/assets/`.
 
 ### Jobs
 
-- Update `data.jobs` (role, org, period, summary, highlights).
+- Classic: update `data.jobs` in `src/data.js`.
+- Inspired: update the matching experience data in `src/inspired/data.js`.
 
 ### Socials / contact
 
-- Update `data.socials` and `data.identity.email`.
+- Update `data.socials` and `data.identity.email` in the relevant data file.
 
 ### Page title & meta
 
-- Update `data.meta.title` and `data.meta.description`.
+- Classic: `index.html` and `src/data.js`.
+- Inspired: `inspired/index.html` and `src/inspired/data.js`.
 
-## Deploy to GitHub Pages
+## Deploy
 
-The live URL is:
+The primary URL is:
 
 ```
 https://sourabh-ctrl.github.io/portfolio/
 ```
 
-`vite.config.js` uses `base: '/portfolio/'`, so the production build outputs to `dist/` with `/portfolio/`-prefixed asset paths — deploy the contents of `dist/` to the Pages root of the `portfolio` repository.
+The redesign is at:
+
+```
+https://sourabh-ctrl.github.io/portfolio/inspired/
+```
+
+`vite.config.js` uses `base: '/portfolio/'` outside Vercel, so the production build outputs both pages to `dist/` with `/portfolio/`-prefixed asset paths. Deploy the contents of `dist/` to the Pages root of the `portfolio` repository. On Vercel, the base becomes `/` and the same two pages are served at `/` and `/inspired/`.
+
+WakaTime endpoints remain separate: the classic design uses `/api/wakatime`; the inspired design uses `/api/wakatime/today`.
 

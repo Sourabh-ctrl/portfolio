@@ -51,6 +51,16 @@ function Footer() {
             <span>Designed & developed by {identity.name}</span>
             <span>·</span>
             <span>© {currentYear}</span>
+            <a
+              href={`${import.meta.env.BASE_URL}inspired/`}
+              aria-label="Open the inspired portfolio"
+              title="Inspired version"
+              className="group -mx-1 inline-flex size-4 items-center justify-center rounded-full focus-visible:outline-accent"
+            >
+              <span className="text-[10px] leading-none text-slate/40 transition-colors group-hover:text-accent">
+                ·
+              </span>
+            </a>
           </p>
 
           <div className="flex items-center gap-4 font-mono text-xs">
